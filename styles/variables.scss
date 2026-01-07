@@ -1,0 +1,94 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap");
+
+/*--------------
+	Colors
+----------------*/
+
+$background: #F8F9FA;
+$foreground: #13171F;
+
+$card: #FFFFFF;
+$card-foreground: #13171F;
+
+$popover: #FFFFFF;
+$popover-foreground: #13171F;
+
+/* Primary */
+$primary: #0FB67F;
+$primary-foreground: #FFFFFF;
+
+/* Secondary */
+$secondary: #EFF1F4;
+$secondary-foreground: #2F3A4F;
+
+/* Muted */
+$muted: #ECEFF2;
+$muted-foreground: #676E7E;
+
+/* Accent */
+$accent: #14B7A4;
+$accent-foreground: #FFFFFF;
+
+/* Semantic */
+$destructive: #DC2828;
+$destructive-foreground: #FFFFFF;
+
+$success: #16A149;
+$success-foreground: #FFFFFF;
+
+$warning: #F49E0A;
+$warning-foreground: #FFFFFF;
+
+$income: #16A149;
+$income-foreground: #FFFFFF;
+
+$expense: #DC2828;
+$expense-foreground: #FFFFFF;
+
+/* UI */
+$border: #E5E7EB;
+$input: #E5E7EB;
+$ring: #0FB67F;
+
+/* Sidebar */
+$sidebar-background: #13171F;
+$sidebar-foreground: #B8BDC5;
+$sidebar-primary: #12D392;
+$sidebar-primary-foreground: #FFFFFF;
+$sidebar-accent: #1E232D;
+$sidebar-accent-foreground: #FFFFFF;
+$sidebar-border: #242A37;
+$sidebar-ring: #12D392;
+$sidebar-muted: #727B8C;
+
+
+/*--------------
+Typography
+-----------------*/
+
+$font-family: "Inter", sans-serif;
+
+/* Fonte size */
+$font-xs: 12px;
+$font-sm: 14px;
+$font-md: 16px;
+$font-lg: 18px;
+$font-xl: 20px;
+
+/* Font weight */
+$font-regular: 400;
+$font-medium: 500;
+$font-semibold: 600;
+$font-bold: 700;
+
+/* Espaçamento */
+$space-xs: 8px;
+$space-sm: 12px;
+$space-md: 16px;
+$space-lg: 24px;
+$space-xl: 32px;
+
+/* Radius */
+$radius-sm: 4px;
+$radius-md: 8px;
+$radius-lg: 12px;
