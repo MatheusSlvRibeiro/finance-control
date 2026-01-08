@@ -1,15 +1,8 @@
+// Importa variáveis globais do projeto
 @use "../../styles/variables.scss" as *;
 
-%btn-base {
-	border-radius: $radius-lg;
-	font-weight: $font-bold;
-	transition: background-color 0.25s ease, color 0.25s ease, transform 0.2s;
-	display: flex;
-	align-items: center;
-	gap: 1rem;	
-}
-
-%title-base{
+// Placeholders para reutilização de estilos base
+%title-base {
 	color: $dark;
 	text-align: center;
 	font-weight: $font-bold;
@@ -23,58 +16,37 @@
 	margin-bottom: $space-xl;
 }
 
-.header {
-	width: 100%;
-	background-color: $white;
-	position: fixed;
-	top: 0;
-	z-index: 1000;
-	box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.1);
-}
-
-.headerContent {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-	padding: $space-md;
-	align-items: center;
-	margin: 0 auto;
-	max-width: $breakpoint-xxl;
-}
-
-.loginBtn {
-	@extend %btn-base;
-	background-color: $background;
-	border: 1px solid $gray-light;
-	color: $secondary-foreground;
-	padding: $space-sm;
-
-	&:hover{
-		background-color: $accent;
-		color: $accent-foreground;
-	}
-}
-
+// =====================
+// Hero Section
+// =====================
 .heroSection {
 	padding: 5rem 0;
 	margin: $space-xl;
 }
 
-.title, .toolsTitle, .carouselTitle, .finalCtaTitle {
+// Títulos das seções principais
+.benefitsTitle,
+.carouselTitle,
+.finalCtaTitle {
 	@extend %title-base;
-}
-
-.toolsTitle, .carouselTitle, .finalCtaTitle {
 	font-size: $font-3xl;
 }
 
-.title{
+// Título principal com gradiente
+.title {
+	@extend %title-base;
 	font-size: $font-4xl;
 	margin: $space-xl;
 	padding-top: $space-xl;
-	
-	@media (min-width: $breakpoint-md) { font-size: $font-5xl;}
-	@media (min-width: $breakpoint-xl) { font-size: $font-6xl;}
+
+	@media (min-width: $breakpoint-md) {
+		font-size: $font-5xl;
+	}
+	@media (min-width: $breakpoint-xl) {
+		font-size: $font-6xl;
+		max-width: 1000px;
+		margin: 0 auto;
+	}
 
 	span {
 		background: linear-gradient(to right, $primary, $accent);
@@ -85,73 +57,77 @@
 	}
 }
 
-.paragraph, .toolsSubtitle, .carouselSubtitle, .finalCtaSubtitle {
+// Parágrafos e subtítulos das seções
+.paragraph,
+.benefitsSubtitle,
+.carouselSubtitle,
+.finalCtaSubtitle {
 	@extend %paragraph-base;
 	font-size: $font-xl;
-}
-
-.paragraph {
 	font-weight: $font-regular;
 }
 
-.heroSectionBtn {
+// Parágrafo principal com responsividade
+.paragraph {
+	@media (min-width: $breakpoint-xl) {
+		max-width: 800px;
+		margin: 1.5rem auto;
+	}
+}
+
+.heroSectionButtons {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	gap: $space-lg;
 
-	.loginBtn {
-		padding: $space-md $space-xl;
+	@media (min-width: $breakpoint-md) {
+		flex-direction: row;
+		justify-content: center;
 	}
 }
 
-.registerBtn {
-	@extend %btn-base;
-	background: linear-gradient(to right, $primary, $accent);
-	color: $white;
-	padding: $space-md $space-2xl;
-	font-size: $font-xl;
-	box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
-
-	&:hover {
-		transform: scale(1.05);
-	}
-}
-
-.toolsSection {
+// =====================
+// Benefits Section
+// =====================
+.benefitsSection {
 	align-items: center;
 	justify-content: center;
 	margin: 6rem $space-xl;
 }
 
-.toolsContent {
+.benefitsContent {
 	text-align: center;
 	display: flex;
 	flex-direction: column;
 	gap: 1rem;
 }
 
-.toolsSubtitle {
+// Subtítulos das seções com cor diferenciada
+.benefitsSubtitle,
+.carouselSubtitle,
+.finalCtaSubtitle {
 	color: $gray-muted;
 }
 
-.carouselSection{
+// =====================
+// Carousel Section e Final CTA
+// =====================
+.carouselSection,
+.finalCtaContent {
 	text-align: center;
 	margin: 0 auto;
 	padding: $space-2xl;
 }
 
-.carouselContent{
+.carouselContent {
 	display: flex;
 	flex-direction: column;
 	gap: 1rem;
 	margin: 2rem 1rem;
 }
 
-.carouselSubtitle{
-	color: $gray-muted;
-}
-
+// Seção final de call-to-action
 .finalCtaSection {
 	padding: 2rem 0;
 	background-color: lighten($green, 50%);
@@ -160,46 +136,15 @@
 .finalCtaContent {
 	display: flex;
 	flex-direction: column;
+	align-items: center;
 	gap: 2rem;
-	text-align: center;
-	padding: $space-2xl;
-	margin: 0 auto;
-
-	.registerBtn {
-		font-size: $font-lg;
-		justify-content: center;
-		margin: 0 auto;
-	}
 }
 
 .finalCtaTitle {
 	margin: 0 auto;
 	width: 250px;
-}
 
-.finalCtaSubtitle {
-	color: $gray-muted;
-}
-
-@media (min-width: $breakpoint-md) {
-	.heroSectionBtn {
-		flex-direction: row;
-		justify-content: center;
-	}
-
-	.finalCtaTitle {
+	@media (min-width: $breakpoint-md) {
 		width: 100%;
-	}
-}
-
-@media (min-width: $breakpoint-xl) {
-	.title {
-		max-width: 1000px;
-		margin: 0 auto;
-	}
-
-	.paragraph {
-		max-width: 800px;
-		margin: 1.5rem auto;
 	}
 }

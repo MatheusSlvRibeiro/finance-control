@@ -1,11 +1,12 @@
 import Link from "next/link";
 import styles from "./page.module.scss";
-import { Logo } from "@components/logo/logo";
-import { Footer } from "@components/footer/footer";
-import { ToolsCard } from "./_components/ToolsCard/toolsCard";
+import { Footer } from "@components/layout/footer/footer";
+import { BenefitsCard } from "./_components/BenefitsCard/benefitsCard";
 import { MoveRight } from "lucide-react";
 import EmblaCarousel from "./_components/EmblaCarousel/EmblaCarousel";
 import { EmblaOptionsType } from "embla-carousel";
+import Button from "@components/ui/button/button";
+import { Header } from "./_components/Header/header";
 
 export default function Home() {
 	const OPTIONS: EmblaOptionsType = {};
@@ -26,15 +27,7 @@ export default function Home() {
 
 	return (
 		<div className={styles.page}>
-			<header className={styles.header}>
-				<div className={styles.headerContent}>
-					<Logo />
-
-					<Link className={styles.loginBtn} href="/login">
-						Entrar
-					</Link>
-				</div>
-			</header>
+			<Header />
 
 			<section className={styles.heroSection}>
 				<h1 className={styles.title}>
@@ -48,36 +41,44 @@ export default function Home() {
 					mais inteligentes.
 				</p>
 
-				<div className={styles.heroSectionBtn}>
-					<Link className={styles.registerBtn} href="/cadastro">
-						Começar agora <MoveRight />
+				<div className={styles.heroSectionButtons}>
+					<Link href="/register">
+						<Button variant="register">
+							Começar agora
+							<MoveRight />
+						</Button>
 					</Link>
 
-					<Link className={styles.loginBtn} href="/login">
-						Já tenho conta
+					<Link href="/login">
+						<Button variant="default">Já tenho conta</Button>
 					</Link>
 				</div>
 			</section>
 
-			<section className={styles.toolsSection}>
-				<div className={styles.toolsContent}>
-					<h2 className={styles.toolsTitle}>
+			<section className={styles.benefitsSection}>
+				<div className={styles.benefitsContent}>
+					<h2 className={styles.benefitsTitle}>
 						Por que escolher o Finance Control?
 					</h2>
 
-					<p className={styles.toolsSubtitle}>
+					<p className={styles.benefitsSubtitle}>
 						Aqui você tem ferramentas poderosas para ter controle
 						total de suas finanças
 					</p>
 				</div>
-				<ToolsCard />
+				<BenefitsCard />
 			</section>
 
 			<section className={styles.carouselSection}>
 				<div className={styles.carouselContent}>
-					<h2 className={styles.carouselTitle}>Dashboard poderoso e intuitivo</h2>
+					<h2 className={styles.carouselTitle}>
+						Dashboard poderoso e intuitivo
+					</h2>
 
-					<p className={styles.carouselSubtitle}>Visualize todas as informações importantes em um único lugar</p>
+					<p className={styles.carouselSubtitle}>
+						Visualize todas as informações importantes em um único
+						lugar
+					</p>
 				</div>
 				<EmblaCarousel slides={SLIDES} options={OPTIONS} />
 			</section>
@@ -91,8 +92,11 @@ export default function Home() {
 						Crie sua conta gratuita e tenha controle total do seu
 						dinheiro
 					</p>
-					<Link className={styles.registerBtn} href="/cadastro">
-						Criar conta gratuita <MoveRight />
+					<Link href="/register">
+						<Button variant="register">
+							Criar conta gratuita
+							<MoveRight />
+						</Button>
 					</Link>
 				</div>
 			</section>

@@ -1,7 +1,7 @@
 import { TrendingUp, ChartPie, Shield, Zap } from "lucide-react";
-import styles from "./toolsCard.module.scss";
+import styles from "./benefitsCard.module.scss";
 
-export function ToolsCard() {
+export function BenefitsCard() {
 	const items = [
 		{
 			icon: <TrendingUp />,
