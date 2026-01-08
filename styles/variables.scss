@@ -1,71 +1,73 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap");
 
-/*--------------
-	Colors
-----------------*/
+// --------------------------------------------------
+// 🎨 Colors
+// --------------------------------------------------
 
-$background: #F8F9FA;
-$foreground: #13171F;
+$white: #ffffff;
+$dark: #13171f;
+$gray-light: #e5e7eb;
+$gray-muted: #727b8c;
+$green: #12d392;
 
-$card: #FFFFFF;
-$card-foreground: #13171F;
+$background: #f8f9fa;
+$foreground: $dark;
 
-$popover: #FFFFFF;
-$popover-foreground: #13171F;
+$card: $white;
+$card-foreground: $dark;
+
+$popover: $white;
+$popover-foreground: $dark;
 
 /* Primary */
-$primary: #0FB67F;
-$primary-foreground: #FFFFFF;
+$primary: #0fb67f;
+$primary-foreground: $white;
 
 /* Secondary */
-$secondary: #EFF1F4;
-$secondary-foreground: #2F3A4F;
+$secondary: #eff1f4;
+$secondary-foreground: #2f3a4f;
 
 /* Muted */
-$muted: #ECEFF2;
-$muted-foreground: #676E7E;
+$muted: #eceff2;
+$muted-foreground: #676e7e;
 
 /* Accent */
-$accent: #14B7A4;
-$accent-foreground: #FFFFFF;
+$accent: #14b7a4;
+$accent-foreground: $white;
 
 /* Semantic */
-$destructive: #DC2828;
-$destructive-foreground: #FFFFFF;
 
-$success: #16A149;
-$success-foreground: #FFFFFF;
+$destructive: #dc2828;
+$destructive-foreground: $white;
+$success: #16a149;
+$success-foreground: $white;
+$warning: #f49e0a;
+$warning-foreground: $white;
 
-$warning: #F49E0A;
-$warning-foreground: #FFFFFF;
-
-$income: #16A149;
-$income-foreground: #FFFFFF;
-
-$expense: #DC2828;
-$expense-foreground: #FFFFFF;
+$income: $success;
+$income-foreground: $success-foreground;
+$expense: $destructive;
+$expense-foreground: $destructive-foreground;
 
 /* UI */
-$border: #E5E7EB;
-$input: #E5E7EB;
-$ring: #0FB67F;
+$border: $gray-light;
+$input: $gray-light;
+$ring: #0fb67f;
 
 /* Sidebar */
-$sidebar-background: #13171F;
-$sidebar-foreground: #B8BDC5;
-$sidebar-primary: #12D392;
-$sidebar-primary-foreground: #FFFFFF;
-$sidebar-accent: #1E232D;
-$sidebar-accent-foreground: #FFFFFF;
-$sidebar-border: #242A37;
-$sidebar-ring: #12D392;
-$sidebar-muted: #727B8C;
+$sidebar-background: $dark;
+$sidebar-foreground: #b8bdc5;
+$sidebar-primary: $green;
+$sidebar-primary-foreground: $white;
+$sidebar-accent: #1e232d;
+$sidebar-accent-foreground: $white;
+$sidebar-border: #242a37;
+$sidebar-ring: $green;
+$sidebar-muted: $gray-muted;
 
-
-/*--------------
-Typography
------------------*/
-
+// --------------------------------------------------
+// 🔤 Typography
+// --------------------------------------------------
 $font-family: "Inter", sans-serif;
 
 /* Fonte size */
@@ -74,6 +76,11 @@ $font-sm: 14px;
 $font-md: 16px;
 $font-lg: 18px;
 $font-xl: 20px;
+$font-2xl: 24px;
+$font-3xl: 30px;
+$font-4xl: 36px;
+$font-5xl: 46px;
+$font-6xl: 60px;
 
 /* Font weight */
 $font-regular: 400;
@@ -87,8 +94,21 @@ $space-sm: 12px;
 $space-md: 16px;
 $space-lg: 24px;
 $space-xl: 32px;
+$space-2xl: 48px;
 
 /* Radius */
 $radius-sm: 4px;
 $radius-md: 8px;
 $radius-lg: 12px;
+
+
+// --------------------------------------------------
+// 📱 Breakpoints
+// --------------------------------------------------
+$breakpoint-xs: 480px;
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
+$breakpoint-xxl: 1400px;
+

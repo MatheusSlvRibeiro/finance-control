@@ -1,0 +1,205 @@
+@use "../../styles/variables.scss" as *;
+
+%btn-base {
+	border-radius: $radius-lg;
+	font-weight: $font-bold;
+	transition: background-color 0.25s ease, color 0.25s ease, transform 0.2s;
+	display: flex;
+	align-items: center;
+	gap: 1rem;	
+}
+
+%title-base{
+	color: $dark;
+	text-align: center;
+	font-weight: $font-bold;
+	line-height: 1.25;
+}
+
+%paragraph-base {
+	color: $gray-muted;
+	text-align: center;
+	line-height: 1.5;
+	margin-bottom: $space-xl;
+}
+
+.header {
+	width: 100%;
+	background-color: $white;
+	position: fixed;
+	top: 0;
+	z-index: 1000;
+	box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.1);
+}
+
+.headerContent {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	padding: $space-md;
+	align-items: center;
+	margin: 0 auto;
+	max-width: $breakpoint-xxl;
+}
+
+.loginBtn {
+	@extend %btn-base;
+	background-color: $background;
+	border: 1px solid $gray-light;
+	color: $secondary-foreground;
+	padding: $space-sm;
+
+	&:hover{
+		background-color: $accent;
+		color: $accent-foreground;
+	}
+}
+
+.heroSection {
+	padding: 5rem 0;
+	margin: $space-xl;
+}
+
+.title, .toolsTitle, .carouselTitle, .finalCtaTitle {
+	@extend %title-base;
+}
+
+.toolsTitle, .carouselTitle, .finalCtaTitle {
+	font-size: $font-3xl;
+}
+
+.title{
+	font-size: $font-4xl;
+	margin: $space-xl;
+	padding-top: $space-xl;
+	
+	@media (min-width: $breakpoint-md) { font-size: $font-5xl;}
+	@media (min-width: $breakpoint-xl) { font-size: $font-6xl;}
+
+	span {
+		background: linear-gradient(to right, $primary, $accent);
+		background-clip: text;
+		color: transparent;
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+	}
+}
+
+.paragraph, .toolsSubtitle, .carouselSubtitle, .finalCtaSubtitle {
+	@extend %paragraph-base;
+	font-size: $font-xl;
+}
+
+.paragraph {
+	font-weight: $font-regular;
+}
+
+.heroSectionBtn {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: $space-lg;
+
+	.loginBtn {
+		padding: $space-md $space-xl;
+	}
+}
+
+.registerBtn {
+	@extend %btn-base;
+	background: linear-gradient(to right, $primary, $accent);
+	color: $white;
+	padding: $space-md $space-2xl;
+	font-size: $font-xl;
+	box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+
+	&:hover {
+		transform: scale(1.05);
+	}
+}
+
+.toolsSection {
+	align-items: center;
+	justify-content: center;
+	margin: 6rem $space-xl;
+}
+
+.toolsContent {
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+}
+
+.toolsSubtitle {
+	color: $gray-muted;
+}
+
+.carouselSection{
+	text-align: center;
+	margin: 0 auto;
+	padding: $space-2xl;
+}
+
+.carouselContent{
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	margin: 2rem 1rem;
+}
+
+.carouselSubtitle{
+	color: $gray-muted;
+}
+
+.finalCtaSection {
+	padding: 2rem 0;
+	background-color: lighten($green, 50%);
+}
+
+.finalCtaContent {
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+	text-align: center;
+	padding: $space-2xl;
+	margin: 0 auto;
+
+	.registerBtn {
+		font-size: $font-lg;
+		justify-content: center;
+		margin: 0 auto;
+	}
+}
+
+.finalCtaTitle {
+	margin: 0 auto;
+	width: 250px;
+}
+
+.finalCtaSubtitle {
+	color: $gray-muted;
+}
+
+@media (min-width: $breakpoint-md) {
+	.heroSectionBtn {
+		flex-direction: row;
+		justify-content: center;
+	}
+
+	.finalCtaTitle {
+		width: 100%;
+	}
+}
+
+@media (min-width: $breakpoint-xl) {
+	.title {
+		max-width: 1000px;
+		margin: 0 auto;
+	}
+
+	.paragraph {
+		max-width: 800px;
+		margin: 1.5rem auto;
+	}
+}
