@@ -1,13 +1,24 @@
+"use client";
+
 import { useState } from "react";
 import styles from "./loginForm.module.scss";
 import { EyeOff, Eye } from "lucide-react";
 import Button from "@components/ui/button/button";
+import { useRouter } from "next/navigation";
 
 export default function LoginForm() {
 	const [showPassword, setShowPassword] = useState(false);
+	const router = useRouter();
+
+	const handleSubmit = async (e: React.FormEvent) => {
+		e.preventDefault();
+		setTimeout(() => {
+			router.push("/dashboard");
+		}, 1000);
+	};
 
 	return (
-		<form action="/dashboard" className={styles.login__form}>
+		<form onSubmit={handleSubmit} className={styles.login__form}>
 			<div className={styles.login__form_box}>
 				<div className={styles.login__form_input}>
 					<label htmlFor="email">E-mail</label>
@@ -24,7 +35,8 @@ export default function LoginForm() {
 						<input
 							id="password"
 							type={showPassword ? "text" : "password"}
-							placeholder="*******"
+							placeholder="••••••••"
+							autoComplete="current-password"
 							required
 						/>
 						<button
@@ -38,7 +50,9 @@ export default function LoginForm() {
 					</div>
 				</div>
 			</div>
-			<Button variant="register">Entrar</Button>
+			<Button type="submit" variant="register">
+				Entrar
+			</Button>
 		</form>
 	);
 }

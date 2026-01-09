@@ -44,11 +44,7 @@ export default function RegisterForm() {
 	};
 
 	return (
-		<form
-			onSubmit={handleSubmit}
-			action="submit"
-			className={styles.register__form}
-		>
+		<form onSubmit={handleSubmit} className={styles.register__form}>
 			<div className={styles.register__form_box}>
 				<div className={styles.register__form_input}>
 					<label htmlFor="name">Nome completo</label>
