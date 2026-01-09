@@ -1,12 +1,12 @@
 import Link from "next/link";
 import styles from "./page.module.scss";
 import { Footer } from "@components/layout/footer/footer";
-import { BenefitsCard } from "./_components/BenefitsCard/benefitsCard";
+import { BenefitsCard } from "../components/landing/BenefitsCard/benefitsCard";
 import { MoveRight } from "lucide-react";
-import EmblaCarousel from "./_components/EmblaCarousel/EmblaCarousel";
+import EmblaCarousel from "../components/landing/EmblaCarousel/EmblaCarousel";
 import { EmblaOptionsType } from "embla-carousel";
 import Button from "@components/ui/button/button";
-import { Header } from "./_components/Header/header";
+import { Header } from "../components/landing/Header/header";
 
 export default function Home() {
 	const OPTIONS: EmblaOptionsType = {};
