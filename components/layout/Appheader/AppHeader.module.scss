@@ -7,6 +7,7 @@
 	align-items: center;
 	padding: $space-md;
 	background-color: $white;
+	border-bottom: 1px solid $gray-light;
 }
 
 .header__Mobile {
@@ -23,7 +24,6 @@
 	.user__info{
 		display: none;
 	}
-
 }
 
 .header__Desktop {

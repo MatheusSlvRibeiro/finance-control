@@ -6,6 +6,7 @@ import {
 } from "lucide-react";
 import { usePathname } from "next/navigation";
 import styles from "./Appsidebar.module.scss";
+import { useMediaQuery } from "react-responsive";
 
 interface Sidebar {
 	open?: boolean;
@@ -13,6 +14,7 @@ interface Sidebar {
 }
 
 export default function AppSidebar({ open, onClose }: Sidebar) {
+
 	const pathname = usePathname();
 
 	const navitems = [

@@ -17,7 +17,7 @@ const userMock = {
 };
 
 export default function AppHeader({ onMenuClick, sidebarOpen }: HeaderProps) {
-	const isMobile = useMediaQuery({ maxWidth: 768 });
+	const isMobile = useMediaQuery({ maxWidth: 992 });
 
 	return (
 		<header
