@@ -27,6 +27,8 @@ const Button: React.FC<ButtonProps> = ({
 					? styles.register
 					: variant === "disabled"
 					? styles.disabled
+					: variant === "create"
+					? styles.create
 					: styles.default
 			}
 		>

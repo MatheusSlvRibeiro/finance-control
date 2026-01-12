@@ -47,6 +47,19 @@
 	}
 }
 
+.create{
+	@extend %button-base;
+	background: linear-gradient(to right, $primary, $accent);
+	color: $white;
+	padding: $space-sm $space-xl;
+	font-size: $font-lg;
+	box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+
+	&:hover{
+		background: linear-gradient(to right, lighten($primary, 5%), lighten($accent, 5%));
+	}
+}
+
 .disabled{
 	@extend %button-base;
 	color: $white;
