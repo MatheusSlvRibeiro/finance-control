@@ -8,6 +8,10 @@
 	padding: $space-md;
 	background-color: $white;
 	border-bottom: 1px solid $gray-light;
+	position: fixed;
+	width: 100%;
+	height: 70px;
+	z-index: 2;
 }
 
 .header__Mobile {

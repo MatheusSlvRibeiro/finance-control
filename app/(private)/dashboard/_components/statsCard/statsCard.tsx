@@ -2,8 +2,9 @@
 
 import { ArrowRightLeft, Landmark, Minus, Plus } from "lucide-react";
 import styles from "./statsCard.module.scss";
-import { formatCurrency } from "../../../../../utils/formatCurrency";
+import { formatCurrency } from "@utils/formatCurrency";
 import { useMediaQuery } from "react-responsive";
+import { useIsClient } from "@hooks/isClient";
 
 export function StatsCard() {
 	type StatsLabel = "Contas" | "Receitas" | "Despesas" | "Transferências";
@@ -27,7 +28,7 @@ export function StatsCard() {
 		},
 	};
 
-	const stats: { label: StatsLabel; amount: number; icon: JSX.Element }[] = [
+	const stats: { label: StatsLabel; amount: number; icon: React.ReactNode }[] = [
 		{
 			label: "Contas",
 			amount: 12450,
@@ -50,7 +51,11 @@ export function StatsCard() {
 		},
 	];
 
+	const isClient = useIsClient();
 	const isTablet = useMediaQuery({ minWidth: 576 });
+	if (!isClient) {
+		return null;
+	}
 
 	return (
 		<section className={styles.stats_card__container}>

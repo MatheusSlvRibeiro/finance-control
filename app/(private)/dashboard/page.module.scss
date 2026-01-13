@@ -1,0 +1,59 @@
+@use "../../../styles/variables.scss" as *;
+
+%chart-base {
+	display: flex;
+	flex-direction: column;
+	gap: 0.8rem;
+	background-color: $white;
+	padding: $space-md;
+	border-radius: $radius-lg;
+	box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+	z-index: 1;
+	width: 100%;
+}
+
+.dashboard__container {
+	padding: $space-lg;
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+	justify-content: space-between;
+}
+
+.dashboard_charts__container {
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+	width: 100%;
+
+	@media (min-width: $breakpoint-lg) {
+		flex-direction: row;
+	}
+}
+
+.dashboard__lineChart {
+	@extend %chart-base;
+
+	.lineChart_title {
+		color: $dark;
+		font-weight: $font-bold;
+	}
+
+	@media (min-width: $breakpoint-lg) {
+		max-width: 80%;
+	}
+}
+
+.dashboard__pieChart {
+	@extend %chart-base;
+	align-items: center;
+
+	.pieChart_title {
+		color: $dark;
+		font-weight: $font-bold;
+	}
+
+	@media (min-width: $breakpoint-lg) {
+		max-width: 300px;
+	}
+}

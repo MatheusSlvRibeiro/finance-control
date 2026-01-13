@@ -9,6 +9,7 @@ $dark: #13171f;
 $gray-light: #e5e7eb;
 $gray-muted: #727b8c;
 $green: #12d392;
+$blue: #363fc2;
 
 $background: #f8f9fa;
 $foreground: $dark;
@@ -46,6 +47,8 @@ $warning-foreground: $white;
 
 $income: $success;
 $income-foreground: $success-foreground;
+$accounts: $blue;
+$transfers: $warning;
 $expense: $destructive;
 $expense-foreground: $destructive-foreground;
 

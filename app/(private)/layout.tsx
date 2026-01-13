@@ -38,7 +38,7 @@ export default function PrivateLayout({
 			<main style={isMobile 
 				? {} 
 				: {
-					marginLeft: 200
+					marginLeft: 200,
 				}}>{children}</main>
 		</>
 	);
