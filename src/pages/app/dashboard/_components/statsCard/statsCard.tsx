@@ -1,6 +1,5 @@
 import { useMediaQuery } from "react-responsive";
 import { formatCurrency } from "@utils/formatCurrency";
-import { useIsClient } from "@hooks/isClient";
 import { ArrowRightLeft, Landmark, Minus, Plus } from "lucide-react";
 import styles from "./statsCard.module.scss";
 
@@ -53,11 +52,7 @@ export function StatsCard() {
 		},
 	];
 
-	const isClient = useIsClient();
 	const isTablet = useMediaQuery({ minWidth: 576 });
-	if (!isClient) {
-		return null;
-	}
 
 	return (
 		<section className={styles.stats_card__container}>
