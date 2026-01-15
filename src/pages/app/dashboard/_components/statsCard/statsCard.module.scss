@@ -19,10 +19,14 @@
 	align-items: center;
 	width: 100%;
 	gap: 0.8rem;
-	 
+
 	@media (min-width: $breakpoint-sm) {
 		padding: $space-lg;
 		border-radius: $radius-lg;
+	}
+
+	@media (min-width: $breakpoint-sm) {
+		color: $white;
 	}
 }
 
@@ -57,16 +61,32 @@
 
 	@media (min-width: $breakpoint-sm) {
 		.content_account {
-			background-color: color.adjust($accounts, $lightness: 30%);
+			background: linear-gradient(
+				to right,
+				lighten($accounts, 10%),
+				darken($accounts, 2%)
+			);
 		}
 		.content_incomes {
-			background-color: color.adjust($income, $lightness: 30%);
+			background: linear-gradient(
+				to right,
+				lighten($income, 10%),
+				darken($income, 5%)
+			);
 		}
 		.content_expenses {
-			background-color: color.adjust($expense, $lightness: 30%);
+			background: linear-gradient(
+				to right,
+				lighten($expense, 10%),
+				darken($expense, 5%)
+			);
 		}
 		.content_transfers {
-			background-color: color.adjust($transfers, $lightness: 30%);
+			background: linear-gradient(
+				to right,
+				lighten($transfers, 10%),
+				darken($transfers, 5%)
+			);
 		}
 	}
 

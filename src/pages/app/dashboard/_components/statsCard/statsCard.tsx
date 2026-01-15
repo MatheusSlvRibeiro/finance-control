@@ -70,12 +70,25 @@ export function StatsCard() {
 			{stats.map((item) => (
 				<div key={item.label} className={classMap[item.label].card}>
 					<div className={classMap[item.label].icon}>{item.icon}</div>
-					<div className={styles.stats_card__type}>
-						<p className={styles.stats_card_label}>{item.label}</p>
-						<p className={styles.stats_card_amount}>
-							{formatCurrency(item.amount)}
-						</p>
-					</div>
+					{isTablet ? (
+						<div className={styles.stats_card__type}>
+							<p className={styles.stats_card_amount}>
+								{formatCurrency(item.amount)}
+							</p>
+							<p className={styles.stats_card_label}>
+								{item.label}
+							</p>
+						</div>
+					) : (
+						<div className={styles.stats_card__type}>
+							<p className={styles.stats_card_label}>
+								{item.label}
+							</p>
+							<p className={styles.stats_card_amount}>
+								{formatCurrency(item.amount)}
+							</p>
+						</div>
+					)}
 				</div>
 			))}
 		</section>
