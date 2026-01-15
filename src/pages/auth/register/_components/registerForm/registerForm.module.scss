@@ -62,7 +62,7 @@
 
 		.password__passed {
 			color: $success;
-			background-color: lighten($success, 55%);
+			background-color: color.adjust($success, $lightness: 55%);
 		}
 	}
 

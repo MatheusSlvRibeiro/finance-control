@@ -57,16 +57,16 @@
 
 	@media (min-width: $breakpoint-sm) {
 		.content_account {
-			background-color: lighten($accounts, 30%);
+			background-color: color.adjust($accounts, $lightness: 30%);
 		}
 		.content_incomes {
-			background-color: lighten($income, 30%);
+			background-color: color.adjust($income, $lightness: 30%);
 		}
 		.content_expenses {
-			background-color: lighten($expense, 30%);
+			background-color: color.adjust($expense, $lightness: 30%);
 		}
 		.content_transfers {
-			background-color: lighten($transfers, 30%);
+			background-color: color.adjust($transfers, $lightness: 30%);
 		}
 	}
 

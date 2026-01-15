@@ -2,7 +2,7 @@
 	cursor: pointer;
 	display: flex;
 	align-items: center;
-	gap: .5rem;
+	gap: 0.5rem;
 	justify-content: center;
 	font-weight: $font-bold;
 	border: none;
@@ -10,7 +10,7 @@
 	transition: background-color 0.25s ease, color 0.25s ease, transform 0.2s;
 }
 
-.default{
+.default {
 	font-size: $font-md;
 	padding: $space-md $space-xl;
 }
@@ -29,7 +29,6 @@
 
 .login {
 	padding: $space-sm;
-
 }
 
 .register {
@@ -45,7 +44,7 @@
 	}
 }
 
-.create{
+.create {
 	@extend %button-base;
 	background: linear-gradient(to right, $primary, $accent);
 	color: $white;
@@ -53,12 +52,16 @@
 	font-size: $font-lg;
 	box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
 
-	&:hover{
-		background: linear-gradient(to right, lighten($primary, 5%), lighten($accent, 5%));
+	&:hover {
+		background: linear-gradient(
+			to right,
+			color.adjust($primary, $lightness: 5%),
+			color.adjust($accent, $lightness: 5%)
+		);
 	}
 }
 
-.disabled{
+.disabled {
 	@extend %button-base;
 	color: $white;
 	background-color: $gray-muted;

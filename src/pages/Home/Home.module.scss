@@ -111,7 +111,7 @@
 
 .finalCtaSection {
 	padding: 2rem 0;
-	background-color: lighten($green, 50%);
+	background-color: color.adjust($green, $lightness: 50%);
 }
 
 .finalCtaContent {
