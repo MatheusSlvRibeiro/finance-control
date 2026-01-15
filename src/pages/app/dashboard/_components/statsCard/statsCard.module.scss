@@ -97,6 +97,14 @@
 			flex-direction: column;
 			gap: 0.2rem;
 			align-items: start;
+
+			// No tablet, mostrar o valor antes do label.
+			.stats_card_amount {
+				order: 0;
+			}
+			.stats_card_label {
+				order: 1;
+			}
 		}
 	}
 
