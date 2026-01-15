@@ -1,8 +1,8 @@
+import { useMediaQuery } from "react-responsive";
+import { formatCurrency } from "@utils/formatCurrency";
+import { useIsClient } from "@hooks/isClient";
 import { ArrowRightLeft, Landmark, Minus, Plus } from "lucide-react";
 import styles from "./statsCard.module.scss";
-import { formatCurrency } from "../../../../../utils/formatCurrency";
-import { useMediaQuery } from "react-responsive";
-import { useIsClient } from "../../../../../hooks/isClient";
 
 export function StatsCard() {
 	type StatsLabel = "Contas" | "Receitas" | "Despesas" | "Transferências";

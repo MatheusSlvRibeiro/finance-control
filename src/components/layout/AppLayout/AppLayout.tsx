@@ -1,6 +1,6 @@
 import { Outlet, useNavigate } from "react-router-dom";
-import AppHeader from "@components/layout/Appheader/AppHeader";
-import AppSidebar from "@components/layout/AppSidebar/Appsidebar";
+import AppHeader from "@components/layout/AppLayout/_components/Appheader/AppHeader";
+import AppSidebar from "@components/layout/AppLayout/_components/AppSidebar/Appsidebar";
 import styles from "@components/layout/AppLayout/AppLayout.module.scss";
 import { useEffect, useState } from "react";
 

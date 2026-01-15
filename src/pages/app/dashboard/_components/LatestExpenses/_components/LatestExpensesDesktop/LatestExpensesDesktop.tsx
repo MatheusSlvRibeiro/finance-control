@@ -1,7 +1,7 @@
+import { formatCurrency } from "@utils/formatCurrency";
+import { formatDate } from "@utils/formatDate";
 import { EllipsisVertical } from "lucide-react";
 import styles from "./LatestExpensesDesktop.module.scss";
-import { formatCurrency } from "../../../../../../../utils/formatCurrency";
-import { formatDate } from "../../../../../../../utils/formatDate";
 
 export function LatestExpensesDesktop() {
 	const today = new Date();

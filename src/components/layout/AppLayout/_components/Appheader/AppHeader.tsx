@@ -1,7 +1,7 @@
 import { useMediaQuery } from "react-responsive";
 import styles from "./AppHeader.module.scss";
 import { Menu, UserRound, X } from "lucide-react";
-import { Logo } from "../logo/logo";
+import { Logo } from "@components/layout/logo/logo";
 
 interface HeaderProps {
 	onMenuClick?: () => void;

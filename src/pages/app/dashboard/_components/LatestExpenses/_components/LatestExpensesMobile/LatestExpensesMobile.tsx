@@ -1,5 +1,5 @@
-import { formatCurrency } from "../../../../../../../utils/formatCurrency";
-import { formatDate } from "../../../../../../../utils/formatDate";
+import { formatCurrency } from "@utils/formatCurrency";
+import { formatDate } from "@utils/formatDate";
 import styles from "./LatestExpensesMobile.module.scss";
 
 export function LatestExpensesMobile() {
