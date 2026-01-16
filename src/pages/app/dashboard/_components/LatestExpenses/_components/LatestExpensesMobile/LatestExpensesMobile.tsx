@@ -51,7 +51,7 @@ export function LatestExpensesMobile() {
 	];
 
 	return (
-		<table className={styles.expenses_table__mobile}>
+		<table>
 			<tbody>
 				{recentExpenses.map((item) => (
 					<tr className={styles.expenses_table__row} key={item.id}>
