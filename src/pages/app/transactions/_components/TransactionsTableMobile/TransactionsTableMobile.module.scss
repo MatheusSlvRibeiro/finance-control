@@ -1,0 +1,50 @@
+.bodyRow {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	padding: $space-md $space-xs;
+	border-bottom: 1px solid $gray-light;
+
+	.bodyRowMain {
+		display: flex;
+		flex-direction: column;
+		gap: .3rem;
+
+		.bodyRowAccount {
+			color: $gray-muted;
+			font-size: $font-sm;
+		}
+
+		.bodyRowDescription{
+			color: $dark;
+		}
+
+		.bodyRowCategory{
+			font-size: $font-sm;
+			color: $white;
+			padding: $space-xxs $space-xs;
+			border-radius: $radius-lg;
+		}
+	}
+
+	.bodyRowMeta {
+		display: flex;
+		flex-direction: row;
+		align-items: start;
+		gap: 0.5rem;
+
+		.bodyRowDate{
+			color: $gray-muted;
+			text-align: end;
+		}
+
+		.bodyRowButton {
+			display: flex;
+			background-color: transparent;
+			border: none;
+			cursor: pointer;
+			width: 20px;
+			height: 20px;
+		}
+	}
+}
