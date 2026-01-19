@@ -2,7 +2,7 @@ import { toast } from "react-toastify";
 import styles from "./EditAccountModal.module.scss";
 import { formatCurrency } from "@utils/formatCurrency";
 import { ModalButton } from "@components/ui/modal/_components/modalButton/modalButton";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Select, SelectOption } from "@components/ui/select/Select";
 import { Building2, PiggyBank, Wallet } from "lucide-react";
 import { Input } from "@components/ui/inputs/baseInput/input";
@@ -40,6 +40,15 @@ export function EditAccountsModal({
 		{ value: "savings", label: "Poupança", icon: <PiggyBank size={18} /> },
 		{ value: "wallet", label: "Carteira", icon: <Wallet size={18} /> },
 	];
+
+	useEffect(() => {
+		setName(accountName ?? "");
+		setOpeningBalanceInCents(Math.round((openingBalance ?? 0) * 100));
+
+		const mappedType = 
+			options.find((o) => o.label === type)?.value ?? "";
+		setAccountType(mappedType);
+	}, [accountName, openingBalance, type]);
 
 	return (
 		<div className={styles.modal_edit}>
