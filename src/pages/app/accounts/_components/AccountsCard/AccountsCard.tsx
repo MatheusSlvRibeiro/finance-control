@@ -1,18 +1,116 @@
 import { useState } from "react";
 import { formatCurrency } from "@utils/formatCurrency";
-import type { RowId, Account } from "./_components/accountCardType";
-import { Modal } from "@components/ui/modal/Modal";
-import {
-	Building2,
-	PiggyBank,
-	Wallet,
-} from "lucide-react";
-import styles from "./AccountsCard.module.scss";
+import type { RowId, Account } from "@types/account";
 import { Dropdown } from "@components/ui/dropdown/Dropdown";
+import { BaseModal } from "@components/ui/modal/baseModal/BaseModal";
 import { EditAccountsModal } from "./_components/EditAccountModal/EditAccountModal";
-import { DeleteAccountsModal } from "./_components/DeleteAccountModal/DeleteAccountModal";
+import { DeleteModal } from "@components/ui/modal/deleteModal/DeleteModal";
+import { Building2, PiggyBank, Wallet } from "lucide-react";
+import styles from "./AccountsCard.module.scss";
+
+type RowKind = "default" | "income" | "expense" | "balance";
 
 type ModalType = "edit" | "delete" | null;
+
+const userAccounts = [
+	{
+		icon: <Building2 />,
+		name: "Nubank",
+		type: "Conta corrente",
+		openingBalance: 5000,
+		incomes: 500,
+		incomingTransfer: 0,
+		outgoingTransfers: 100,
+		expenses: 50,
+		balance: 5350,
+	},
+	{
+		icon: <PiggyBank />,
+		name: "Inter",
+		type: "Poupança",
+		openingBalance: 500,
+		incomes: 500,
+		incomingTransfer: 100,
+		outgoingTransfers: 0,
+		expenses: 1100,
+		balance: 0,
+	},
+	{
+		icon: <Wallet />,
+		name: "Carteira",
+		type: "Carteira",
+		openingBalance: 100,
+		incomes: 300,
+		incomingTransfer: 0,
+		outgoingTransfers: 0,
+		expenses: 70,
+		balance: 330,
+	},
+];
+
+const rows = [
+	{
+		id: "openingBalance",
+		label: "Saldo inicial",
+		getValue: (acc: Account) => acc.openingBalance,
+	},
+	{
+		id: "incomes",
+		label: "Receitas",
+		getValue: (acc: Account) => acc.incomes,
+	},
+	{
+		id: "incomingTransfer",
+		label: "Transf. creditadas",
+		getValue: (acc: Account) => acc.incomingTransfer,
+	},
+	{
+		id: "outgoingTransfers",
+		label: "Transf. debitadas",
+		getValue: (acc: Account) => acc.outgoingTransfers,
+	},
+	{
+		id: "expenses",
+		label: "Despesas",
+		getValue: (acc: Account) => acc.expenses,
+	},
+	{
+		id: "currentBalance",
+		label: "Saldo atual",
+		getValue: (acc: Account) => acc.balance,
+	},
+] satisfies Array<{
+	id: RowId;
+	label: string;
+	getValue: (acc: Account) => number;
+}>;
+
+const ROW_KIND: Record<RowId, RowKind> = {
+	openingBalance: "balance",
+	incomes: "income",
+	incomingTransfer: "income",
+	outgoingTransfers: "expense",
+	expenses: "expense",
+	currentBalance: "balance",
+};
+
+const currentBalanceRow = rows.find((row) => row.id === "currentBalance");
+const metricRows = rows.filter((row) => row.id !== "currentBalance");
+
+const getAmountClassName = (rowId: RowId, value: number) => {
+	const kind = ROW_KIND[rowId];
+
+	if (value === 0) return styles.amountDefault;
+
+	if (kind === "income") return styles.amountIncome;
+	if (kind === "expense") return styles.amountExpense;
+
+	if (kind === "balance") {
+		return value > 0 ? styles.amountIncome : styles.amountExpense;
+	}
+
+	return undefined;
+};
 
 export default function AccountsCard() {
 	const [isModalOpen, setIsModalOpen] = useState(false);
@@ -38,108 +136,6 @@ export default function AccountsCard() {
 		setModalType("delete");
 		setIsModalOpen(true);
 	};
-
-	const userAccounts = [
-		{
-			icon: <Building2 />,
-			name: "Nubank",
-			type: "Conta corrente",
-			openingBalance: 5000,
-			incomes: 500,
-			incomingTransfer: 0,
-			outgoingTransfers: 100,
-			expenses: 50,
-			balance: 5350,
-		},
-		{
-			icon: <PiggyBank />,
-			name: "Inter",
-			type: "Poupança",
-			openingBalance: 500,
-			incomes: 500,
-			incomingTransfer: 100,
-			outgoingTransfers: 0,
-			expenses: 1100,
-			balance: 0,
-		},
-		{
-			icon: <Wallet />,
-			name: "Carteira",
-			type: "Carteira",
-			openingBalance: 100,
-			incomes: 300,
-			incomingTransfer: 0,
-			outgoingTransfers: 0,
-			expenses: 70,
-			balance: 330,
-		},
-	];
-
-	const rows = [
-		{
-			id: "openingBalance",
-			label: "Saldo inicial",
-			getValue: (acc: Account) => acc.openingBalance,
-		},
-		{
-			id: "incomes",
-			label: "Receitas",
-			getValue: (acc: Account) => acc.incomes,
-		},
-		{
-			id: "incomingTransfer",
-			label: "Transf. creditadas",
-			getValue: (acc: Account) => acc.incomingTransfer,
-		},
-		{
-			id: "outgoingTransfers",
-			label: "Transf. debitadas",
-			getValue: (acc: Account) => acc.outgoingTransfers,
-		},
-		{
-			id: "expenses",
-			label: "Despesas",
-			getValue: (acc: Account) => acc.expenses,
-		},
-		{
-			id: "currentBalance",
-			label: "Saldo atual",
-			getValue: (acc: Account) => acc.balance,
-		},
-	] satisfies Array<{
-		id: RowId;
-		label: string;
-		getValue: (acc: Account) => number;
-	}>;
-
-	type RowKind = "default" | "income" | "expense" | "balance";
-
-	const ROW_KIND: Record<RowId, RowKind> = {
-		openingBalance: "balance",
-		incomes: "income",
-		incomingTransfer: "income",
-		outgoingTransfers: "expense",
-		expenses: "expense",
-		currentBalance: "balance",
-	};
-
-	const getAmountClassName = (rowId: RowId, value: number) => {
-		const kind = ROW_KIND[rowId];
-
-		if (value === 0) return styles.amountDefault;
-
-		if (kind === "income") return styles.amountIncome;
-		if (kind === "expense") return styles.amountExpense;
-
-		if (kind === "balance") {
-			return value > 0 ? styles.amountIncome : styles.amountExpense;
-		}
-
-		return "";
-	};
-
-	const currentBalanceRow = rows.find((row) => row.id === "currentBalance");
-	const metricRows = rows.filter((row) => row.id !== "currentBalance");
 
 	return (
 		<>
@@ -272,7 +268,7 @@ export default function AccountsCard() {
 				))}
 			</div>
 
-			<Modal isOpen={isModalOpen} onClose={closeModal}>
+			<BaseModal isOpen={isModalOpen} onClose={closeModal}>
 				{modalType === "edit" && selectedAccount && (
 					<EditAccountsModal
 						closeModal={closeModal}
@@ -283,12 +279,21 @@ export default function AccountsCard() {
 				)}
 
 				{modalType === "delete" && selectedAccount && (
-					<DeleteAccountsModal
+					<DeleteModal
+						title="Excluir conta"
+						message={
+							<>
+								Tem certeza que deseja excluir a conta{" "}
+								<strong>{selectedAccount.name}</strong>?
+								<br />
+								Essa ação não pode ser desfeita.
+							</>
+						}
 						closeModal={closeModal}
-						name={selectedAccount.name}
+						deleteMessage="Conta excluida com sucesso!"
 					/>
 				)}
-			</Modal>
+			</BaseModal>
 		</>
 	);
 }

@@ -5,7 +5,7 @@ import Button from "@components/ui/button/button";
 import NetWorth from "./_components/NetWorth/NetWorth";
 import AccountsCard from "./_components/AccountsCard/AccountsCard";
 import { useState } from "react";
-import { Modal } from "@components/ui/modal/Modal";
+import { BaseModal } from "@components/ui/modal/baseModal/BaseModal";
 import { CreateAccountsModal } from "./_components/CreateAccountsModal/CreateAccountsModal";
 
 export default function AccountsPage() {
@@ -36,9 +36,9 @@ export default function AccountsPage() {
 
 				<AccountsCard />
 
-				<Modal isOpen={isModalOpen} onClose={closeModal}>
+				<BaseModal isOpen={isModalOpen} onClose={closeModal}>
 					<CreateAccountsModal closeModal={closeModal} />
-				</Modal>
+				</BaseModal>
 			</div>
 		</div>
 	);

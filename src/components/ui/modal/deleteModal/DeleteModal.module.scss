@@ -4,18 +4,18 @@
 	gap: 1rem;
 }
 
-.text {
+.title {
+	font-weight: $font-bold;
+	color: $dark;
+}
+
+.message {
 	font-weight: $font-regular;
 	font-size: $font-sm;
 	color: $secondary-foreground;
 }
 
-.name {
-	font-weight: $font-bold;
-	color: $dark;
-}
-
-.modal_buttons {
+.buttons {
 	display: flex;
 	flex-direction: row;
 	gap: 0.5rem;

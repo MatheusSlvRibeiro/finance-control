@@ -9,8 +9,8 @@ export type RowId =
 	| "currentBalance";
 
 export type Account = {
-	name?: string;
-	type?: string;
+	name: string;
+	type: string;
 	icon?: ReactNode;
 	openingBalance: number;
 	incomes: number;

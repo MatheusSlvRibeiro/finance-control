@@ -1,6 +1,6 @@
 import { X } from "lucide-react";
 import type { ReactElement, ReactNode } from "react";
-import styles from "./Modal.module.scss";
+import styles from "./BaseModal.module.scss";
 
 interface ModalProps {
 	isOpen: boolean;
@@ -9,7 +9,7 @@ interface ModalProps {
 	text?: string;
 }
 
-export function Modal({
+export function BaseModal({
 	isOpen,
 	onClose,
 	children,

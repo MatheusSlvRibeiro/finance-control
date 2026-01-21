@@ -1,0 +1,27 @@
+.container{
+	display: flex;
+	flex-direction: column;
+	gap: 1.5rem;
+}
+
+.header{
+	display: flex;
+	flex-direction: column;
+	gap: .2rem;
+}
+
+.title{
+	color: $dark;
+}
+
+.message{
+	color: $secondary-foreground;
+	font-size: $font-md;
+}
+
+.buttons{
+	display: flex;
+	flex-direction: row;
+	gap: .5rem;
+	justify-content: end;
+}
