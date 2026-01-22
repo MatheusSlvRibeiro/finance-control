@@ -1,0 +1,27 @@
+.container {
+	display: flex;
+	flex-direction: column;
+	gap: 0.3rem;
+	align-items: start;
+	justify-content: space-between;
+
+	label {
+		color: $dark;
+		font-weight: $font-medium;
+		font-size: $font-sm;
+	}
+}
+
+.input {
+	border: 1px solid $gray-light;
+	padding: $space-xs;
+	border-radius: $radius-md;
+	min-width: 100%;
+	outline: none;
+
+	&::placeholder {
+		color: $dark;
+		font-weight: $font-regular;
+		font-size: $font-sm;
+	}
+}

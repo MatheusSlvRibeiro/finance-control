@@ -3,8 +3,8 @@ import { ChevronDown } from "lucide-react";
 import styles from "./Select.module.scss";
 
 export type SelectOption = {
-	value: string;
-	label: string;
+	value?: string;
+	label?: string;
 	icon?: ReactNode;
 	disabled?: boolean;
 };
