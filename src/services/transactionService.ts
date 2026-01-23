@@ -1,5 +1,7 @@
 import { transactionsMock } from "@mocks/transactions/transactions.mock";
 import type { Transaction, TransactionType } from "@appTypes/transaction";
+import { CategoryType } from "@appTypes/category";
+import { getNiceTickValues } from "recharts";
 
 const toTransactionType = (raw: string): TransactionType =>
 	raw === "income" || raw === "expense" ? raw : "expense";
@@ -25,5 +27,16 @@ export const transactionService = {
 		await new Promise((resolve) => setTimeout(resolve, 200));
 
 		return getNormalizedTransactions().filter((t) => t.type === type);
+	},
+
+	async getTotalByType(type: CategoryType): Promise<number> {
+		await new Promise((resolve) => setTimeout(resolve, 200));
+
+		const transactions = await this.getAll();
+
+		return transactions.reduce(
+			(acc, t) => (t.type === type ? acc + t.value : acc),
+			0,
+		);
 	},
 };

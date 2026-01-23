@@ -2,6 +2,7 @@ import { formatCurrency } from "@utils/formatCurrency";
 import type { Transaction } from "@appTypes/transaction";
 import { Dropdown } from "@components/ui/dropdown/Dropdown";
 import styles from "./TransactionsTableDesktop.module.scss";
+import { formatDate } from "@utils/formatDate";
 
 type Props = {
     transactions: Transaction[];
@@ -36,7 +37,7 @@ export function TransactionsTableDesktop({ transactions, onEdit, onDelete }: Pro
                             </div>
                         </td>
                         <td className={styles.cell}>{item.account}</td>
-                        <td className={styles.cell}>{item.date}</td>
+                        <td className={styles.cell}>{formatDate(item.date)}</td>
                         <td className={`${styles.cell} ${styles.cellEnd}`}>
                             {formatCurrency(item.value)}
                         </td>

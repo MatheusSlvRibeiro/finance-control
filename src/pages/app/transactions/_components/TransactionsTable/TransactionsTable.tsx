@@ -11,10 +11,14 @@ import Button from "@components/ui/button/button";
 
 export type TransactionsTableModalType = "edit" | "delete" | null;
 
-export function TransactionsTable() {
+type Props = {
+	data: Transaction[];
+};
+
+export function TransactionsTable({ data }: Props) {
 	const isMobile = useMediaQuery({ maxWidth: 768 });
 
-	const { data: transactions, loading, error, reload } = useTransactions();
+	const { loading, error, reload } = useTransactions();
 
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const [modalType, setModalType] =
@@ -66,13 +70,13 @@ export function TransactionsTable() {
 		<div className={styles.container}>
 			{isMobile ? (
 				<TransactionsTableMobile
-					transactions={transactions}
+					transactions={data}
 					onEdit={openEdit}
 					onDelete={openDelete}
 				/>
 			) : (
 				<TransactionsTableDesktop
-					transactions={transactions}
+					transactions={data}
 					onEdit={openEdit}
 					onDelete={openDelete}
 				/>

@@ -8,9 +8,12 @@ import { TransactionForm } from "./_components/TransactionsForm/TransactionsForm
 import { FormModal } from "@components/ui/modal/formModal/FormModal";
 import { useState } from "react";
 import { toast } from "react-toastify";
+import { useTransactions } from "@hooks/useTransactions";
 
 export default function TransactionsPage() {
 	const [isModalOpen, setIsModalOpen] = useState(false);
+
+	const { data } = useTransactions();
 
 	const openModal = () => {
 		setIsModalOpen(true);
@@ -39,7 +42,7 @@ export default function TransactionsPage() {
 				</Button>
 			</PageHeader>
 
-			<TransactionsTable />
+			<TransactionsTable data={data} />
 
 			<BaseModal isOpen={isModalOpen} onClose={closeModal}>
 				<FormModal

@@ -1,11 +1,45 @@
 import { Link } from "react-router-dom";
 import styles from "./LatestExpenses.module.scss";
-import { useMediaQuery } from "react-responsive";
-import { LatestExpensesMobile } from "./_components/LatestExpensesMobile/LatestExpensesMobile";
-import { LatestExpensesDesktop } from "./_components/LatestExpensesDesktop/LatestExpensesDesktop";
+import { useTransactions } from "@hooks/useTransactions";
+import { useMemo } from "react";
+import { Transaction } from "@appTypes/transaction";
+import Button from "@components/ui/button/button";
+import { TransactionsTable } from "@pages/app/transactions/_components/TransactionsTable/TransactionsTable";
+
+export type LatestExpensesProps = {
+	data: Transaction[];
+	onEdit: (t: Transaction) => void;
+	onDelete: (t: Transaction) => void;
+};
 
 export function LatestExpenses() {
-	const isMobile = useMediaQuery({ maxWidth: 768 });
+	const { getTransactionByType, loading, error, reload } = useTransactions();
+
+	const expenses = getTransactionByType("expense");
+
+	const latestExpenses = useMemo(() => {
+		return [...expenses]
+			.sort(
+				(a, b) =>
+					new Date(b.date).getTime() - new Date(a.date).getTime(),
+			)
+			.slice(0, 4);
+	}, [expenses]);
+
+	if (loading) {
+		return <div>Carregando últimas transações...</div>;
+	}
+
+	if (error) {
+		return (
+			<div>
+				<p>Falha ao carregar: {error.message}</p>
+				<Button variant="default" size="md" onClick={reload}>
+					Tentar novamente
+				</Button>
+			</div>
+		);
+	}
 
 	return (
 		<div className={styles.table__container}>
@@ -17,7 +51,7 @@ export function LatestExpenses() {
 				</Link>
 			</div>
 
-			{isMobile ? <LatestExpensesMobile /> : <LatestExpensesDesktop />}
+			<TransactionsTable data={latestExpenses} />
 		</div>
 	);
 }

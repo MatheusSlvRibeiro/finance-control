@@ -1,14 +1,107 @@
 import { formatCurrency } from "@utils/formatCurrency";
 import { Pie, ResponsiveContainer, PieChart, Tooltip, Cell } from "recharts";
 import styles from "@pages/app/dashboard/_components/CategoryChart/CategoryChart.module.scss";
+import { useMemo } from "react";
+
+import { useCategories } from "@hooks/useCategories";
+import Button from "@components/ui/button/button";
+import { useTransactions } from "@hooks/useTransactions";
+
+type ChartItem = {
+	id: string;
+	name: string;
+	value: number;
+	color: string;
+};
 
 export function CategoryChart() {
-	const categoryData = [
-		{ name: "Alimentação", value: 1200, color: "#10b981" },
-		{ name: "Transporte", value: 800, color: "#3b82f6" },
-		{ name: "Moradia", value: 2000, color: "#8b5cf6" },
-		{ name: "Lazer", value: 600, color: "#f59e0b" },
-	];
+	const {
+		getTransactionByType,
+		loading: txLoading,
+		error: txError,
+		reload: reloadTx,
+	} = useTransactions();
+
+	const {
+		data: categories,
+		loading: catLoading,
+		error: catError,
+		reload: reloadCat,
+	} = useCategories();
+
+	const loading = txLoading || catLoading;
+	const error = txError ?? catError;
+
+	const chartData: ChartItem[] = useMemo(() => {
+		const expenses = getTransactionByType("expense");
+		const totalsByCategoryName = new Map<string, number>();
+
+		expenses.forEach((t) => {
+			const key =
+				(t.category ?? "Sem categoria").trim() || "Sem categoria";
+			const current = totalsByCategoryName.get(key) ?? 0;
+			const value = Number.isFinite(t.value) ? t.value : 0;
+			totalsByCategoryName.set(key, current + value);
+		});
+
+		const categoryMetaByName = new Map<
+			string,
+			{ id: string; color: string }
+		>();
+		
+		categories.forEach((c) => {
+			categoryMetaByName.set(c.name.toLowerCase(), {
+				id: c.id,
+				color: c.color,
+			});
+		});
+
+		const result: ChartItem[] = Array.from(
+			totalsByCategoryName.entries(),
+		).map(([name, total]) => {
+			const meta = categoryMetaByName.get(name.toLowerCase());
+			const fallbackColor =
+				expenses.find((t) => t.category === name)?.categoryColor ??
+				"#94a3b8";
+
+			return {
+				id: meta?.id ?? name,
+				name,
+				value: total,
+				color: meta?.color ?? fallbackColor,
+			};
+		});
+
+		return result
+			.filter((x) => x.value > 0)
+			.sort((a, b) => b.value - a.value);
+	}, [categories, getTransactionByType]);
+
+	if (loading) {
+		return (
+			<div className={styles.dashboard__pieChart}>
+				Carregando gráfico...
+			</div>
+		);
+	}
+
+	if (error) {
+		return (
+			<div className={styles.dashboard__pieChart}>
+				<p>Falha ao carregar: {error.message}</p>
+				<Button
+					variant="default"
+					size="md"
+					onClick={() => {
+						reloadTx?.();
+						reloadCat?.();
+					}}
+				>
+					Tentar novamente
+				</Button>
+			</div>
+		);
+	}
 
 	return (
 		<div className={styles.dashboard__pieChart}>
@@ -19,46 +112,56 @@ export function CategoryChart() {
 						<PieChart>
 							<Pie
 								dataKey="value"
-								data={categoryData}
+								data={chartData}
 								cx="50%"
 								cy="50%"
 								innerRadius={60}
 								outerRadius={100}
 								paddingAngle={2}
 							>
-								{categoryData.map((entry, index) => (
+								{chartData.map((entry, index) => (
 									<Cell
 										key={`cell-${index}`}
 										fill={entry.color}
 									/>
 								))}
 							</Pie>
-							<Tooltip />
+							<Tooltip
+								formatter={(v) =>
+									formatCurrency(Number(v) || 0)
+								}
+							/>
 						</PieChart>
 					</ResponsiveContainer>
 				</div>
 				<div>
-					{categoryData.map((item) => (
-						<div
-							key={item.name}
-							className={styles.piechart__infoList}
-						>
-							<div className={styles.piechart__category}>
-								<div
-									className={styles.piechart__dotlist}
-									style={{
-										backgroundColor: item.color,
-									}}
-								></div>
-								<span className={styles.piechart__info_type}>
-									{item.name}
+					{chartData.map((item) =>
+						item.value > 0 ? (
+							<div
+								key={item.name}
+								className={styles.piechart__infoList}
+							>
+								<div className={styles.piechart__category}>
+									<div
+										className={styles.piechart__dotlist}
+										style={{
+											backgroundColor: item.color,
+										}}
+									></div>
+									<span
+										className={styles.piechart__info_type}
+									>
+										{item.name}
+									</span>
+								</div>
+								<span className={styles.piechart__info_value}>
+									{formatCurrency(item.value)}
 								</span>
 							</div>
-							<span className={styles.piechart__info_value}>
-								{formatCurrency(item.value)}
-							</span>
-						</div>
-					))}
+						) : (
+							<></>
+						),
+					)}
 				</div>
 			</div>
 		</div>

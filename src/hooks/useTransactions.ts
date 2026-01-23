@@ -1,5 +1,5 @@
-import type { Transaction } from "@appTypes/transaction";
-import { useCallback, useEffect, useState } from "react";
+import type { Transaction, TransactionType } from "@appTypes/transaction";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { transactionService } from "@services/transactionService";
 
 export function useTransactions() {
@@ -52,5 +52,11 @@ export function useTransactions() {
 		};
 	}, []);
 
-	return { data, loading, error, reload };
+	const getTransactionByType = useCallback(
+		(type: Transaction["type"]) =>
+			data.filter((item) => item.type === type),
+		[data],
+	);
+
+	return { data, loading, error, reload, getTransactionByType };
 }

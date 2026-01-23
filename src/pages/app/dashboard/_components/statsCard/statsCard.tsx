@@ -2,9 +2,13 @@ import { useMediaQuery } from "react-responsive";
 import { formatCurrency } from "@utils/formatCurrency";
 import { ArrowRightLeft, Landmark, Minus, Plus } from "lucide-react";
 import styles from "./statsCard.module.scss";
+import { useAccountsTotals } from "@hooks/useAccountsTotals";
 
 export function StatsCard() {
 	type StatsLabel = "Contas" | "Receitas" | "Despesas" | "Transferências";
+
+	const { balance, incomes, expenses, incomingTransfer } =
+		useAccountsTotals();
 
 	const classMap: Record<StatsLabel, { card: string; icon: string }> = {
 		Contas: {
@@ -32,22 +36,22 @@ export function StatsCard() {
 	}[] = [
 		{
 			label: "Contas",
-			amount: 12450,
+			amount: balance,
 			icon: <Landmark />,
 		},
 		{
 			label: "Receitas",
-			amount: 8200,
+			amount: incomes,
 			icon: <Plus />,
 		},
 		{
 			label: "Despesas",
-			amount: 3750,
+			amount: expenses,
 			icon: <Minus />,
 		},
 		{
 			label: "Transferências",
-			amount: 0,
+			amount: incomingTransfer,
 			icon: <ArrowRightLeft />,
 		},
 	];

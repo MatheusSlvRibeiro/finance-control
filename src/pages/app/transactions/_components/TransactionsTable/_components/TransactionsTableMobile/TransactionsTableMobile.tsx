@@ -2,6 +2,7 @@ import { formatCurrency } from "@utils/formatCurrency";
 import styles from "./TransactionsTableMobile.module.scss";
 import { Dropdown } from "@components/ui/dropdown/Dropdown";
 import type { Transaction } from "@appTypes/transaction";
+import { formatDate } from "@utils/formatDate";
 
 type Props = {
     transactions: Transaction[];
@@ -28,7 +29,7 @@ export function TransactionsTableMobile({ transactions, onEdit, onDelete }: Prop
 
                         <td className={styles.bodyRowMeta}>
                             <div>
-                                <div className={styles.bodyRowDate}>{item.date}</div>
+                                <div className={styles.bodyRowDate}>{formatDate(item.date)}</div>
                                 <div className={styles.bodyRowValue}>{formatCurrency(item.value)}</div>
                             </div>
 
