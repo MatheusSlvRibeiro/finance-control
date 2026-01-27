@@ -114,6 +114,27 @@ src/
 
 ---
 
+## 🧪 Testes Automatizados
+
+O projeto utiliza **Vitest** para a criação e execução dos testes unitários.
+
+### Como rodar os testes
+
+```bash
+pnpm test
+```
+
+### Por que utilizamos o Vitest?
+
+- **Integração nativa com Vite**: O Vitest foi projetado para funcionar perfeitamente com projetos Vite, aproveitando o mesmo sistema de build e configuração, o que resulta em testes mais rápidos e configuração simplificada.
+- **Performance**: Execução extremamente rápida dos testes, com suporte a hot reload e watch mode.
+- **Sintaxe familiar**: A API do Vitest é inspirada no Jest, facilitando a migração e o entendimento para quem já conhece testes em JavaScript/TypeScript.
+- **Melhor experiência de DX**: Feedback instantâneo durante o desenvolvimento, alinhado ao propósito do projeto de priorizar produtividade e experiência do desenvolvedor.
+
+Os testes cobrem os principais serviços e utilitários do projeto, garantindo maior confiança nas funcionalidades implementadas.
+
+---
+
 ## 🔌 Backend
 
 ### ➡️ O backend em Django REST está disponível em: (https://github.com/MatheusSlvRibeiro/finance-control-backend.git)
