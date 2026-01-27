@@ -1,46 +1,46 @@
-import Button from "@components/ui/button/button";
-import { Eye, EyeOff } from "lucide-react";
-import { useState } from "react";
-import styles from "./registerForm.module.scss";
-import { useNavigate } from "react-router-dom";
+import Button from '@components/ui/button/button'
+import { Eye, EyeOff } from 'lucide-react'
+import { useState } from 'react'
+import styles from './registerForm.module.scss'
+import { useNavigate } from 'react-router-dom'
 
 export default function RegisterForm() {
-	const [showPassword, setShowPassword] = useState(false);
-	const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-	const [isLoading, setIsLoading] = useState(false);
+	const [showPassword, setShowPassword] = useState(false)
+	const [showConfirmPassword, setShowConfirmPassword] = useState(false)
+	const [isLoading, setIsLoading] = useState(false)
 	const [formData, setFormData] = useState({
-		name: "",
-		email: "",
-		password: "",
-		confirmPassword: "",
-	});
-	const navigate = useNavigate();
+		name: '',
+		email: '',
+		password: '',
+		confirmPassword: '',
+	})
+	const navigate = useNavigate()
 
 	const passwordRequirements = [
-		{ label: "Mínimo 8 caracteres", passed: formData.password.length >= 8 },
+		{ label: 'Mínimo 8 caracteres', passed: formData.password.length >= 8 },
 		{
-			label: "Uma letra maiúscula",
+			label: 'Uma letra maiúscula',
 			passed: /[A-Z]/.test(formData.password),
 		},
-		{ label: "Um número", passed: /[0-9]/.test(formData.password) },
+		{ label: 'Um número', passed: /[0-9]/.test(formData.password) },
 		{
-			label: "Um caractere especial",
+			label: 'Um caractere especial',
 			passed: /[!@#$%^&*()_+{}[\]:;<>,.?~\\/-]/.test(formData.password),
 		},
-	];
+	]
 
 	const handleSubmit = async (e: React.FormEvent) => {
-		e.preventDefault();
+		e.preventDefault()
 		if (formData.password !== formData.confirmPassword) {
-			return;
+			return
 		}
-		setIsLoading(true);
+		setIsLoading(true)
 
 		setTimeout(() => {
-			setIsLoading(false);
-			navigate("/dashboard");
-		}, 1000);
-	};
+			setIsLoading(false)
+			navigate('/dashboard')
+		}, 1000)
+	}
 
 	return (
 		<form onSubmit={handleSubmit} className={styles.register__form}>
@@ -51,9 +51,7 @@ export default function RegisterForm() {
 						id="name"
 						type="text"
 						value={formData.name}
-						onChange={(e) =>
-							setFormData({ ...formData, name: e.target.value })
-						}
+						onChange={(e) => setFormData({ ...formData, name: e.target.value })}
 						placeholder="Seu nome completo"
 						required
 					/>
@@ -65,9 +63,7 @@ export default function RegisterForm() {
 						id="email"
 						type="email"
 						value={formData.email}
-						onChange={(e) =>
-							setFormData({ ...formData, email: e.target.value })
-						}
+						onChange={(e) => setFormData({ ...formData, email: e.target.value })}
 						placeholder="seu@email.com"
 						required
 					/>
@@ -85,7 +81,7 @@ export default function RegisterForm() {
 									password: e.target.value,
 								})
 							}
-							type={showPassword ? "text" : "password"}
+							type={showPassword ? 'text' : 'password'}
 							placeholder="******"
 							required
 						/>
@@ -103,9 +99,7 @@ export default function RegisterForm() {
 							<span
 								key={item}
 								className={
-									req.passed
-										? styles.password__passed
-										: styles.password__muted
+									req.passed ? styles.password__passed : styles.password__muted
 								}
 							>
 								{req.passed}
@@ -127,37 +121,30 @@ export default function RegisterForm() {
 									confirmPassword: e.target.value,
 								})
 							}
-							type={showConfirmPassword ? "text" : "password"}
+							type={showConfirmPassword ? 'text' : 'password'}
 							placeholder="******"
 							required
 						/>
 						<button
 							className={styles.show_password}
 							type="button"
-							onClick={() =>
-								setShowConfirmPassword(!showConfirmPassword)
-							}
+							onClick={() => setShowConfirmPassword(!showConfirmPassword)}
 						>
 							{showConfirmPassword ? <EyeOff /> : <Eye />}
 						</button>
 					</div>
-					{formData.confirmPassword &&
-						formData.password !== formData.confirmPassword && (
-							<p className={styles.password__error}>
-								As senhas não coincidem
-							</p>
-						)}
+					{formData.confirmPassword && formData.password !== formData.confirmPassword && (
+						<p className={styles.password__error}>As senhas não coincidem</p>
+					)}
 				</div>
 			</div>
 			<Button
 				type="submit"
 				variant="register"
-				disabled={
-					isLoading || formData.password !== formData.confirmPassword
-				}
+				disabled={isLoading || formData.password !== formData.confirmPassword}
 			>
-				{isLoading ? "Criando conta" : "Criar conta"}
+				{isLoading ? 'Criando conta' : 'Criar conta'}
 			</Button>
 		</form>
-	);
+	)
 }

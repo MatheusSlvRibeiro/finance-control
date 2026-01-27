@@ -1,65 +1,59 @@
-import { ReactNode, useEffect, useMemo, useState } from "react";
-import { Transaction } from "@appTypes/transaction";
-import styles from "./TransactionsForm.module.scss";
-import { Input } from "@components/ui/inputs/baseInput/input";
-import { Select } from "@components/ui/select/Select";
-import { DateInput } from "@components/ui/inputs/DateInput/DateInput";
-import { CurrencyInput } from "@components/ui/inputs/currencyInput/CurrencyInput";
-import { useCategories } from "@hooks/useCategories";
-import { useAccounts } from "@hooks/useAccounts";
+import { ReactNode, useEffect, useMemo, useState } from 'react'
+import { Transaction } from '@appTypes/transaction'
+import styles from './TransactionsForm.module.scss'
+import { Input } from '@components/ui/inputs/baseInput/input'
+import { Select } from '@components/ui/select/Select'
+import { DateInput } from '@components/ui/inputs/DateInput/DateInput'
+import { CurrencyInput } from '@components/ui/inputs/currencyInput/CurrencyInput'
+import { useCategories } from '@hooks/useCategories'
+import { useAccounts } from '@hooks/useAccounts'
 
 type TransactionFormValues = {
-	description: string;
-	category: string;
-	account: string;
-	date: string;
-	valueInCents: number;
-};
+	description: string
+	category: string
+	account: string
+	date: string
+	valueInCents: number
+}
 
 type TransactionFormProps = {
-	initialValues?: Partial<Transaction>;
-	onSubmit?: (values: TransactionFormValues) => void;
-};
+	initialValues?: Partial<Transaction>
+	onSubmit?: (values: TransactionFormValues) => void
+}
 
 type SelectOption = {
-	value: string;
-	label: string;
-	icon?: ReactNode;
-};
+	value: string
+	label: string
+	icon?: ReactNode
+}
 
-function findOptionValue(
-	options: Array<{ value: string; label: string }>,
-	raw?: string,
-) {
-	if (!raw) return "";
+function findOptionValue(options: Array<{ value: string; label: string }>, raw?: string) {
+	if (!raw) return ''
 
-	const byValue = options.find((o) => o.value === raw);
-	if (byValue) return byValue.value;
+	const byValue = options.find((o) => o.value === raw)
+	if (byValue) return byValue.value
 
-	const byLabel = options.find((o) => o.label === raw);
-	return byLabel?.value ?? "";
+	const byLabel = options.find((o) => o.label === raw)
+	return byLabel?.value ?? ''
 }
 
 function toDateInputValue(raw?: string) {
-	if (!raw) return "";
-	if (/^\d{4}-\d{2}-\d{2}$/.test(raw)) return raw;
-	if (/^\d{4}-\d{2}-\d{2}T/.test(raw)) return raw.slice(0, 10);
+	if (!raw) return ''
+	if (/^\d{4}-\d{2}-\d{2}$/.test(raw)) return raw
+	if (/^\d{4}-\d{2}-\d{2}T/.test(raw)) return raw.slice(0, 10)
 
-	const br = raw.match(/^(\d{2})\/(\d{2})\/(\d{4})$/);
+	const br = raw.match(/^(\d{2})\/(\d{2})\/(\d{4})$/)
 	if (br) {
-		const [, dd, mm, yyyy] = br;
-		return `${yyyy}-${mm}-${dd}`;
+		const [, dd, mm, yyyy] = br
+		return `${yyyy}-${mm}-${dd}`
 	}
 
-	return "";
+	return ''
 }
 
-export function TransactionForm({
-	initialValues,
-	onSubmit,
-}: TransactionFormProps) {
-	const { data: categories } = useCategories();
-	const { data: accounts } = useAccounts();
+export function TransactionForm({ initialValues, onSubmit }: TransactionFormProps) {
+	const { data: categories } = useCategories()
+	const { data: accounts } = useAccounts()
 
 	const categoryOptions: SelectOption[] = useMemo(
 		() =>
@@ -69,7 +63,7 @@ export function TransactionForm({
 				icon: c.icon,
 			})),
 		[categories],
-	);
+	)
 
 	const accountOptions: SelectOption[] = useMemo(
 		() =>
@@ -78,44 +72,40 @@ export function TransactionForm({
 				label: a.name,
 			})),
 		[accounts],
-	);
+	)
 
-	const [description, setDescription] = useState("");
-	const [category, setCategory] = useState("");
-	const [account, setAccount] = useState("");
-	const [valueInCents, setValueInCents] = useState(0);
-	const [date, setDate] = useState("");
+	const [description, setDescription] = useState('')
+	const [category, setCategory] = useState('')
+	const [account, setAccount] = useState('')
+	const [valueInCents, setValueInCents] = useState(0)
+	const [date, setDate] = useState('')
 
 	useEffect(() => {
-		setDescription(initialValues?.description ?? "");
+		setDescription(initialValues?.description ?? '')
 
-		const rawCategory =
-			(initialValues as any)?.categoryId ??
-			(initialValues as any)?.category;
-		const rawAccount =
-			(initialValues as any)?.accountId ??
-			(initialValues as any)?.account;
+		const rawCategory = (initialValues as any)?.categoryId ?? (initialValues as any)?.category
+		const rawAccount = (initialValues as any)?.accountId ?? (initialValues as any)?.account
 
-		setCategory(findOptionValue(categoryOptions, rawCategory));
-		setAccount(findOptionValue(accountOptions, rawAccount));
+		setCategory(findOptionValue(categoryOptions, rawCategory))
+		setAccount(findOptionValue(accountOptions, rawAccount))
 
-		setDate(toDateInputValue(initialValues?.date));
+		setDate(toDateInputValue(initialValues?.date))
 
-		setValueInCents(Math.round(((initialValues as any)?.value ?? 0) * 100));
-	}, [initialValues, categoryOptions, accountOptions]);
+		setValueInCents(Math.round(((initialValues as any)?.value ?? 0) * 100))
+	}, [initialValues, categoryOptions, accountOptions])
 
 	return (
 		<form
 			action="submit"
 			onSubmit={(e) => {
-				e.preventDefault();
+				e.preventDefault()
 				onSubmit?.({
 					description,
 					category,
 					account,
 					date,
 					valueInCents,
-				});
+				})
 			}}
 			className={styles.transactionForm}
 		>
@@ -159,5 +149,5 @@ export function TransactionForm({
 				onChangeInCents={setValueInCents}
 			/>
 		</form>
-	);
+	)
 }

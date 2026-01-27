@@ -1,16 +1,12 @@
-import styles from "./skeletonLoader.module.scss";
+import styles from './skeletonLoader.module.scss'
 
 export type SkeletonLoaderProps = {
-	rows?: number;
-	height?: number | string;
-	className?: string;
-};
+	rows?: number
+	height?: number | string
+	className?: string
+}
 
-export function SkeletonLoader({
-	rows = 4,
-	height = 32,
-	className = "",
-}: SkeletonLoaderProps) {
+export function SkeletonLoader({ rows = 4, height = 32, className = '' }: SkeletonLoaderProps) {
 	return (
 		<div className={`${styles.loading} ${className}`}>
 			{Array.from({ length: rows }).map((_, i) => (
@@ -18,11 +14,10 @@ export function SkeletonLoader({
 					key={i}
 					className={styles.skeletonRow}
 					style={{
-						height:
-							typeof height === "number" ? `${height}px` : height,
+						height: typeof height === 'number' ? `${height}px` : height,
 					}}
 				/>
 			))}
 		</div>
-	);
+	)
 }

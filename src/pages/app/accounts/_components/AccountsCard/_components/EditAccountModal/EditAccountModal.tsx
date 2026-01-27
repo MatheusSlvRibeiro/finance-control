@@ -1,19 +1,19 @@
-import { toast } from "react-toastify";
-import styles from "./EditAccountModal.module.scss";
-import { useEffect, useState } from "react";
-import { Select } from "@components/ui/select/Select";
-import { Input } from "@components/ui/inputs/baseInput/input";
-import { CurrencyInput } from "@components/ui/inputs/currencyInput/CurrencyInput";
-import { FormModal } from "@components/ui/modal/formModal/FormModal";
-import { accountTypes } from "src/constants/accountTypes.constants";
-import type { AccountType } from "@appTypes/account";
+import { toast } from 'react-toastify'
+import styles from './EditAccountModal.module.scss'
+import { useEffect, useState } from 'react'
+import { Select } from '@components/ui/select/Select'
+import { Input } from '@components/ui/inputs/baseInput/input'
+import { CurrencyInput } from '@components/ui/inputs/currencyInput/CurrencyInput'
+import { FormModal } from '@components/ui/modal/formModal/FormModal'
+import { accountTypes } from 'src/constants/accountTypes.constants'
+import type { AccountType } from '@appTypes/account'
 
 type EditAccountsModalProps = {
-	closeModal: () => void;
-	accountName: string | undefined;
-	openingBalance: number;
-	type: AccountType | undefined;
-};
+	closeModal: () => void
+	accountName: string | undefined
+	openingBalance: number
+	type: AccountType | undefined
+}
 
 export function EditAccountsModal({
 	closeModal,
@@ -21,23 +21,23 @@ export function EditAccountsModal({
 	openingBalance,
 	type,
 }: EditAccountsModalProps) {
-	const [name, setName] = useState("");
-	const [openingBalanceInCents, setOpeningBalanceInCents] = useState(0);
-	const [accountType, setAccountType] = useState("");
+	const [name, setName] = useState('')
+	const [openingBalanceInCents, setOpeningBalanceInCents] = useState(0)
+	const [accountType, setAccountType] = useState('')
 
 	const handleSave = () => {
-		toast("Conta atualizada com sucesso!", {
-			toastId: "success-edit",
-		}) && closeModal();
-	};
+		toast('Conta atualizada com sucesso!', {
+			toastId: 'success-edit',
+		}) && closeModal()
+	}
 
-	const options = accountTypes;
+	const options = accountTypes
 
 	useEffect(() => {
-		setName(accountName ?? "");
-		setOpeningBalanceInCents(Math.round((openingBalance ?? 0) * 100));
-		setAccountType(type ?? "");
-	}, [accountName, openingBalance, type]);
+		setName(accountName ?? '')
+		setOpeningBalanceInCents(Math.round((openingBalance ?? 0) * 100))
+		setAccountType(type ?? '')
+	}, [accountName, openingBalance, type])
 
 	return (
 		<div className={styles.editAccountModal}>
@@ -78,5 +78,5 @@ export function EditAccountsModal({
 				</form>
 			</FormModal>
 		</div>
-	);
+	)
 }

@@ -1,10 +1,10 @@
-import { InputHTMLAttributes, ReactNode } from "react";
-import styles from "./input.module.scss";
+import { InputHTMLAttributes, ReactNode } from 'react'
+import styles from './input.module.scss'
 
 type InputProps = InputHTMLAttributes<HTMLInputElement> & {
-	label?: string;
-	prefix?: ReactNode;
-};
+	label?: string
+	prefix?: ReactNode
+}
 
 export function Input({ label, id, prefix, className, ...rest }: InputProps) {
 	return (
@@ -16,12 +16,12 @@ export function Input({ label, id, prefix, className, ...rest }: InputProps) {
 					id={id}
 					className={[
 						styles.control,
-						prefix ? styles.hasPrefix : "",
-						className ?? "",
-					].join(" ")}
+						prefix ? styles.hasPrefix : '',
+						className ?? '',
+					].join(' ')}
 					{...rest}
 				/>
 			</div>
 		</div>
-	);
+	)
 }

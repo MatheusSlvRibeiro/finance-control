@@ -1,5 +1,5 @@
-import { Wallet } from "lucide-react";
-import styles from "./logo.module.scss";
+import { Wallet } from 'lucide-react'
+import styles from './logo.module.scss'
 
 export function Logo() {
 	return (
@@ -9,5 +9,5 @@ export function Logo() {
 			</div>
 			<span className={styles.name}>Finance Control</span>
 		</div>
-	);
+	)
 }

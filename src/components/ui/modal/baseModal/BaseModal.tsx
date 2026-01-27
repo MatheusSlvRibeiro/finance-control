@@ -1,22 +1,17 @@
-import { X } from "lucide-react";
-import type { ReactElement, ReactNode } from "react";
-import styles from "./BaseModal.module.scss";
+import { X } from 'lucide-react'
+import type { ReactElement, ReactNode } from 'react'
+import styles from './BaseModal.module.scss'
 
 interface ModalProps {
-	isOpen: boolean;
-	onClose: () => void;
-	children?: ReactNode;
-	text?: string;
+	isOpen: boolean
+	onClose: () => void
+	children?: ReactNode
+	text?: string
 }
 
-export function BaseModal({
-	isOpen,
-	onClose,
-	children,
-	text,
-}: ModalProps): ReactElement | null {
+export function BaseModal({ isOpen, onClose, children, text }: ModalProps): ReactElement | null {
 	if (!isOpen) {
-		return null;
+		return null
 	}
 
 	return (
@@ -40,5 +35,5 @@ export function BaseModal({
 				<div>{children}</div>
 			</div>
 		</div>
-	);
+	)
 }

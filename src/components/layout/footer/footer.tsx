@@ -1,5 +1,5 @@
-import { Logo } from "@components/layout/logo/logo";
-import styles from "./footer.module.scss";
+import { Logo } from '@components/layout/logo/logo'
+import styles from './footer.module.scss'
 
 export function Footer() {
 	return (
@@ -12,5 +12,5 @@ export function Footer() {
 				</span>
 			</div>
 		</footer>
-	);
+	)
 }

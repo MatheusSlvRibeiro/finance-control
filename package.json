@@ -1,12 +1,17 @@
 {
 	"name": "finance-control",
-	"version": "0.1.0",
+	"version": "1.0.0",
+	"description": "Aplicação web para controle financeiro pessoal, permitindo o gerenciamento de contas, categorias, transações e visualização de dashboards interativos para acompanhamento de receitas, despesas e saldo em tempo real.",
 	"private": true,
 	"scripts": {
 		"dev": "vite",
 		"build": "vite build",
 		"start": "vite preview",
-		"lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\""
+		"lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\"",
+		"lint:check": "prettier --check .",
+		"lint:fix": "prettier --write .",
+		"test": "vitest run",
+		"test:watch": "vitest"
 	},
 	"dependencies": {
 		"axios": "^1.13.2",
@@ -24,6 +29,9 @@
 		"sass": "^1.97.2"
 	},
 	"devDependencies": {
+		"@testing-library/dom": "^10.4.1",
+		"@testing-library/jest-dom": "^6.9.1",
+		"@testing-library/react": "^16.3.2",
 		"@types/node": "^20",
 		"@types/react": "^19",
 		"@types/react-dom": "^19",
@@ -32,8 +40,11 @@
 		"@typescript-eslint/parser": "^8.53.1",
 		"@vitejs/plugin-react": "^5.1.2",
 		"eslint": "^9",
+		"jsdom": "^27.4.0",
+		"prettier": "^3.8.1",
 		"typescript": "^5",
 		"vite": "^7.3.1",
-		"vite-tsconfig-paths": "^6.0.4"
+		"vite-tsconfig-paths": "^6.0.4",
+		"vitest": "^4.0.18"
 	}
 }

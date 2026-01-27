@@ -25,7 +25,7 @@
 			"@appTypes/*": ["src/types/*"],
 			"@services/*": ["src/services/*"],
 			"@mocks/*": ["src/mocks/*"],
-			"@context/*": ["src/context/*"],
+			"@context/*": ["src/context/*"]
 		}
 	},
 	"include": ["**/*.ts", "**/*.tsx", "**/*.mts"],

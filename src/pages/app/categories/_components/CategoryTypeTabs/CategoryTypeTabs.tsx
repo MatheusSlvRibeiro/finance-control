@@ -1,11 +1,11 @@
-import type { CategoryType } from "@appTypes/category";
-import { Minus, Plus } from "lucide-react";
-import styles from "./CategoryTypeTabs.module.scss";
+import type { CategoryType } from '@appTypes/category'
+import { Minus, Plus } from 'lucide-react'
+import styles from './CategoryTypeTabs.module.scss'
 
 type CategoryTypeTabsProps = {
-	value: CategoryType;
-	onChange: (next: CategoryType) => void;
-};
+	value: CategoryType
+	onChange: (next: CategoryType) => void
+}
 
 export function CategoryTypeTabs({ value, onChange }: CategoryTypeTabsProps) {
 	return (
@@ -13,9 +13,9 @@ export function CategoryTypeTabs({ value, onChange }: CategoryTypeTabsProps) {
 			<button
 				type="button"
 				className={`${styles.navbarButton} ${
-					value === "income" ? styles.navbarButtonActiveIncome : ""
+					value === 'income' ? styles.navbarButtonActiveIncome : ''
 				}`}
-				onClick={() => onChange("income")}
+				onClick={() => onChange('income')}
 			>
 				<Plus className={styles.incomeIcon} />
 				Receitas
@@ -23,13 +23,13 @@ export function CategoryTypeTabs({ value, onChange }: CategoryTypeTabsProps) {
 			<button
 				type="button"
 				className={`${styles.navbarButton} ${
-					value === "expense" ? styles.navbarButtonActiveExpense : ""
+					value === 'expense' ? styles.navbarButtonActiveExpense : ''
 				}`}
-				onClick={() => onChange("expense")}
+				onClick={() => onChange('expense')}
 			>
 				<Minus className={styles.expenseIcon} />
 				Despesas
 			</button>
 		</nav>
-	);
+	)
 }

@@ -1,25 +1,18 @@
-import { useMediaQuery } from "react-responsive";
-import { formatCurrency } from "@utils/formatCurrency";
-import { ArrowRightLeft, Landmark, Minus, Plus } from "lucide-react";
-import styles from "./statsCard.module.scss";
-import { useAccountsTotals } from "@hooks/useAccountsTotals";
-import { SkeletonLoader } from "@components/ui/skeletonLoader/skeletonLoader";
-import Button from "@components/ui/button/button";
+import { useMediaQuery } from 'react-responsive'
+import { formatCurrency } from '@utils/formatCurrency/formatCurrency'
+import { ArrowRightLeft, Landmark, Minus, Plus } from 'lucide-react'
+import styles from './statsCard.module.scss'
+import { useAccountsTotals } from '@hooks/useAccountsTotals'
+import { SkeletonLoader } from '@components/ui/skeletonLoader/skeletonLoader'
+import Button from '@components/ui/button/button'
 
 export function StatsCard() {
-	type StatsLabel = "Contas" | "Receitas" | "Despesas" | "Transferências";
+	type StatsLabel = 'Contas' | 'Receitas' | 'Despesas' | 'Transferências'
 
-	const isTablet = useMediaQuery({ minWidth: 576 });
+	const isTablet = useMediaQuery({ minWidth: 576 })
 
-	const {
-		balance,
-		incomes,
-		expenses,
-		incomingTransfer,
-		loading,
-		error,
-		reload,
-	} = useAccountsTotals();
+	const { balance, incomes, expenses, incomingTransfer, loading, error, reload } =
+		useAccountsTotals()
 
 	const classMap: Record<StatsLabel, { card: string; icon: string }> = {
 		Contas: {
@@ -38,41 +31,41 @@ export function StatsCard() {
 			card: styles.contentTransfers,
 			icon: styles.icon_transfers,
 		},
-	};
+	}
 
 	const stats: {
-		label: StatsLabel;
-		amount: number;
-		icon: React.ReactNode;
+		label: StatsLabel
+		amount: number
+		icon: React.ReactNode
 	}[] = [
 		{
-			label: "Contas",
+			label: 'Contas',
 			amount: balance,
 			icon: <Landmark />,
 		},
 		{
-			label: "Receitas",
+			label: 'Receitas',
 			amount: incomes,
 			icon: <Plus />,
 		},
 		{
-			label: "Despesas",
+			label: 'Despesas',
 			amount: expenses,
 			icon: <Minus />,
 		},
 		{
-			label: "Transferências",
+			label: 'Transferências',
 			amount: incomingTransfer,
 			icon: <ArrowRightLeft />,
 		},
-	];
+	]
 
 	if (loading) {
 		return (
 			<div className={styles.StatsCard}>
 				<SkeletonLoader rows={4} />
 			</div>
-		);
+		)
 	}
 
 	if (error) {
@@ -83,7 +76,7 @@ export function StatsCard() {
 					Tentar novamente
 				</Button>
 			</div>
-		);
+		)
 	}
 
 	return (
@@ -100,22 +93,13 @@ export function StatsCard() {
 				</div>
 			) : (
 				<>
-					{!isTablet && (
-						<p className={styles.StatsCard__title}>Visão Geral</p>
-					)}
+					{!isTablet && <p className={styles.StatsCard__title}>Visão Geral</p>}
 
 					{stats.map((item) => (
-						<div
-							key={item.label}
-							className={classMap[item.label].card}
-						>
-							<div className={classMap[item.label].icon}>
-								{item.icon}
-							</div>
+						<div key={item.label} className={classMap[item.label].card}>
+							<div className={classMap[item.label].icon}>{item.icon}</div>
 							<div className={styles.statsCard__type}>
-								<p className={styles.statsCard__label}>
-									{item.label}
-								</p>
+								<p className={styles.statsCard__label}>{item.label}</p>
 								<p className={styles.statsCard__amount}>
 									{formatCurrency(item.amount)}
 								</p>
@@ -125,5 +109,5 @@ export function StatsCard() {
 				</>
 			)}
 		</section>
-	);
+	)
 }

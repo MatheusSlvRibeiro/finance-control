@@ -1,24 +1,18 @@
-import { Dropdown } from "@components/ui/dropdown/Dropdown";
-import styles from "./AccountHeader.module.scss";
-import { Account } from "@appTypes/account";
-import { ReactNode } from "react";
+import { Dropdown } from '@components/ui/dropdown/Dropdown'
+import styles from './AccountHeader.module.scss'
+import { Account } from '@appTypes/account'
+import { ReactNode } from 'react'
 
 type HeaderProps = {
-	icon: ReactNode;
-	name: string;
-	type: string;
-	item: Account;
-	openEdit: () => void;
-	openDelete: () => void;
-};
+	icon: ReactNode
+	name: string
+	type: string
+	item: Account
+	openEdit: () => void
+	openDelete: () => void
+}
 
-export function AccountHeader({
-	icon,
-	name,
-	type,
-	openEdit,
-	openDelete,
-}: HeaderProps) {
+export function AccountHeader({ icon, name, type, openEdit, openDelete }: HeaderProps) {
 	return (
 		<div className={styles.accountHeader}>
 			<div className={styles.accountHeader}>
@@ -31,21 +25,13 @@ export function AccountHeader({
 			</div>
 
 			<Dropdown align="right">
-				<button
-					type="button"
-					role="menuitem"
-					onClick={() => openEdit()}
-				>
+				<button type="button" role="menuitem" onClick={() => openEdit()}>
 					Editar
 				</button>
-				<button
-					type="button"
-					role="menuitem"
-					onClick={() => openDelete()}
-				>
+				<button type="button" role="menuitem" onClick={() => openDelete()}>
 					Excluir
 				</button>
 			</Dropdown>
 		</div>
-	);
+	)
 }

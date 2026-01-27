@@ -1,8 +1,6 @@
-import AppRoutes from "./routes/Routes";
-import "@styles/globals.scss";
+import AppRoutes from './routes/Routes'
+import '@styles/globals.scss'
 
 export default function App() {
-	return (
-		<AppRoutes />
-	);
+	return <AppRoutes />
 }

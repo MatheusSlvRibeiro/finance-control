@@ -1,9 +1,9 @@
 export type NumericAccountField =
-    | "openingBalance"
-    | "incomes"
-    | "incomingTransfer"
-    | "outgoingTransfers"
-    | "expenses"
-    | "balance";
+	| 'openingBalance'
+	| 'incomes'
+	| 'incomingTransfer'
+	| 'outgoingTransfers'
+	| 'expenses'
+	| 'balance'
 
-export type AccountTotals = Record<NumericAccountField, number>;
+export type AccountTotals = Record<NumericAccountField, number>

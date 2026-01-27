@@ -1,49 +1,49 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import Button from "@components/ui/button/button";
-import { EyeOff, Eye } from "lucide-react";
-import styles from "./loginForm.module.scss";
-import { useAuth } from "@context/authContext";
-import { toast } from "react-toastify";
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import Button from '@components/ui/button/button'
+import { EyeOff, Eye } from 'lucide-react'
+import styles from './loginForm.module.scss'
+import { useAuth } from '@context/authContext'
+import { toast } from 'react-toastify'
 
 type LoginFormState = {
-	email: string;
-	password: string;
-};
+	email: string
+	password: string
+}
 
 export default function LoginForm() {
 	const [values, setValues] = useState<LoginFormState>({
-		email: "",
-		password: "",
-	});
-	const [showPassword, setShowPassword] = useState(false);
-	const [error, setError] = useState<string | null>(null);
+		email: '',
+		password: '',
+	})
+	const [showPassword, setShowPassword] = useState(false)
+	const [error, setError] = useState<string | null>(null)
 
-	const navigate = useNavigate();
-	const { login } = useAuth();
+	const navigate = useNavigate()
+	const { login } = useAuth()
 
 	function onChange(event: React.ChangeEvent<HTMLInputElement>) {
-		const { value, name } = event.target;
+		const { value, name } = event.target
 
-		setValues((prev) => ({ ...prev, [name]: value }));
+		setValues((prev) => ({ ...prev, [name]: value }))
 	}
 
 	const handleSubmit = async (e: React.FormEvent) => {
-		e.preventDefault();
-		setError(null);
+		e.preventDefault()
+		setError(null)
 
-		const result = await login(values.email, values.password);
+		const result = await login(values.email, values.password)
 
 		if (result.success) {
-			toast("Autenticado com sucesso!", {
-				toastId: "login-successfull",
-			});
-			navigate("/dashboard");
-			return;
+			toast('Autenticado com sucesso!', {
+				toastId: 'login-successfull',
+			})
+			navigate('/dashboard')
+			return
 		}
 
-		setError(result.message ?? "Não foi possível fazer login");
-	};
+		setError(result.message ?? 'Não foi possível fazer login')
+	}
 
 	return (
 		<form onSubmit={handleSubmit} className={styles.loginForm__form}>
@@ -67,7 +67,7 @@ export default function LoginForm() {
 						<input
 							id="password"
 							name="password"
-							type={showPassword ? "text" : "password"}
+							type={showPassword ? 'text' : 'password'}
 							placeholder="••••••••"
 							autoComplete="current-password"
 							required
@@ -91,5 +91,5 @@ export default function LoginForm() {
 				Entrar
 			</Button>
 		</form>
-	);
+	)
 }

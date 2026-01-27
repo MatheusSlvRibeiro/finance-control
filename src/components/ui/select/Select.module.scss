@@ -83,17 +83,17 @@
 	cursor: pointer;
 
 	&:hover,
-	&[data-active="true"] {
+	&[data-active='true'] {
 		background: $green;
 		color: $white;
 	}
 
-	&[data-selected="true"] {
+	&[data-selected='true'] {
 		background: $green;
 		color: $white;
 	}
 
-	&[data-disabled="true"] {
+	&[data-disabled='true'] {
 		opacity: 0.5;
 		cursor: not-allowed;
 

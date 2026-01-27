@@ -1,11 +1,11 @@
-import type { ReactNode } from "react";
+import type { ReactNode } from 'react'
 
-export type CategoryType = "expense" | "income";
+export type CategoryType = 'expense' | 'income'
 
 export interface Category {
-	id: string;
-	name: string;
-	type: CategoryType;
-	color: string;
-	icon: ReactNode;
+	id: string
+	name: string
+	type: CategoryType
+	color: string
+	icon: ReactNode
 }

@@ -22,7 +22,7 @@
 	}
 }
 
-.cancel_delete{
+.cancel_delete {
 	@extend %button-base;
 
 	color: $income;
@@ -50,7 +50,7 @@
 	color: $white;
 	background-color: $income;
 
-	&:hover{
+	&:hover {
 		background-color: darken($income, 5%);
 	}
 }

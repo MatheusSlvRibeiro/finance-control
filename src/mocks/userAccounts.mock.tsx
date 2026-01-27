@@ -1,10 +1,10 @@
-import { Account } from "@appTypes/account";
+import { Account } from '@appTypes/account'
 
 export const userAccounts: Account[] = [
 	{
-		id: "nubank",
-		name: "Nubank",
-		type: "checking",
+		id: 'nubank',
+		name: 'Nubank',
+		type: 'checking',
 		openingBalance: 5000,
 		incomes: 500,
 		incomingTransfer: 0,
@@ -13,9 +13,9 @@ export const userAccounts: Account[] = [
 		balance: 5350,
 	},
 	{
-		id: "inter",
-		name: "Inter",
-		type: "savings",
+		id: 'inter',
+		name: 'Inter',
+		type: 'savings',
 		openingBalance: 500,
 		incomes: 500,
 		incomingTransfer: 100,
@@ -24,9 +24,9 @@ export const userAccounts: Account[] = [
 		balance: 0,
 	},
 	{
-		id: "carteira",
-		name: "Carteira",
-		type: "wallet",
+		id: 'carteira',
+		name: 'Carteira',
+		type: 'wallet',
 		openingBalance: 100,
 		incomes: 300,
 		incomingTransfer: 0,
@@ -34,4 +34,4 @@ export const userAccounts: Account[] = [
 		expenses: 70,
 		balance: 330,
 	},
-];
+]

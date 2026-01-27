@@ -1,41 +1,41 @@
-import { ReactNode, useEffect, useId, useRef, useState } from "react";
-import { EllipsisVertical } from "lucide-react";
-import styles from "./Dropdown.module.scss";
+import { ReactNode, useEffect, useId, useRef, useState } from 'react'
+import { EllipsisVertical } from 'lucide-react'
+import styles from './Dropdown.module.scss'
 
 type DropDownProps = {
-	children: ReactNode;
-	align?: "left" | "right";
-};
+	children: ReactNode
+	align?: 'left' | 'right'
+}
 
 export function Dropdown({ children, align }: DropDownProps) {
-	const [isOpen, setIsOpen] = useState(false);
-	const rootRef = useRef<HTMLDivElement | null>(null);
-	const menuId = useId();
+	const [isOpen, setIsOpen] = useState(false)
+	const rootRef = useRef<HTMLDivElement | null>(null)
+	const menuId = useId()
 
 	useEffect(() => {
-		if (!isOpen) return;
+		if (!isOpen) return
 
 		const onPointerDown = (event: PointerEvent) => {
-			const root = rootRef.current;
-			if (!root) return;
+			const root = rootRef.current
+			if (!root) return
 
 			if (!root.contains(event.target as Node)) {
-				setIsOpen(false);
+				setIsOpen(false)
 			}
-		};
+		}
 
 		const onKeyDown = (event: KeyboardEvent) => {
-			if (event.key === "Escape") setIsOpen(false);
-		};
+			if (event.key === 'Escape') setIsOpen(false)
+		}
 
-		document.addEventListener("pointerdown", onPointerDown);
-		document.addEventListener("keydown", onKeyDown);
+		document.addEventListener('pointerdown', onPointerDown)
+		document.addEventListener('keydown', onKeyDown)
 
 		return () => {
-			document.removeEventListener("pointerdown", onPointerDown);
-			document.removeEventListener("keydown", onKeyDown);
-		};
-	}, [isOpen]);
+			document.removeEventListener('pointerdown', onPointerDown)
+			document.removeEventListener('keydown', onKeyDown)
+		}
+	}, [isOpen])
 
 	return (
 		<div className={styles.root} ref={rootRef}>
@@ -54,11 +54,11 @@ export function Dropdown({ children, align }: DropDownProps) {
 				<div
 					id={menuId}
 					role="menu"
-					className={`${styles.menu} ${align === "left" ? styles.left : styles.right}`}
+					className={`${styles.menu} ${align === 'left' ? styles.left : styles.right}`}
 				>
 					<div className={styles.items}>{children}</div>
 				</div>
 			)}
 		</div>
-	);
+	)
 }

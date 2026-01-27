@@ -1,8 +1,9 @@
-import type { ReactNode } from "react";
+import type { ReactNode } from 'react'
 
 export interface User {
-	id: string;
-	name: string;
-	email: string;
-	avatar: ReactNode;
+	id: string
+	name: string
+	email: string
+	password: number
+	avatar: ReactNode
 }

@@ -1,7 +1,7 @@
-import { Logo } from "@components/layout/logo/logo";
-import styles from "./header.module.scss";
-import { Link } from "react-router-dom";
-import Button from "@components/ui/button/button";
+import { Logo } from '@components/layout/logo/logo'
+import styles from './header.module.scss'
+import { Link } from 'react-router-dom'
+import Button from '@components/ui/button/button'
 
 export function Header() {
 	return (
@@ -10,11 +10,11 @@ export function Header() {
 				<Logo />
 
 				<Link to="/login">
-					<Button 
-						size="sm"
-						variant="login">Entrar</Button>
+					<Button size="sm" variant="login">
+						Entrar
+					</Button>
 				</Link>
 			</div>
 		</header>
-	);
+	)
 }

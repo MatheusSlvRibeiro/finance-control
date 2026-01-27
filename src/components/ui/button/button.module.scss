@@ -7,7 +7,10 @@
 	font-weight: $font-bold;
 	border: none;
 	border-radius: $radius-lg;
-	transition: background-color 0.25s ease, color 0.25s ease, transform 0.2s;
+	transition:
+		background-color 0.25s ease,
+		color 0.25s ease,
+		transform 0.2s;
 }
 
 .default {

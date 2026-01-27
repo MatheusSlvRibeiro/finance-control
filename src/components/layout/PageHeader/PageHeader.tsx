@@ -1,9 +1,9 @@
-import styles from "./PageHeader.module.scss";
+import styles from './PageHeader.module.scss'
 
 interface PageHeader {
-	title: string;
-	subtitle?: string;
-	children?: React.ReactNode;
+	title: string
+	subtitle?: string
+	children?: React.ReactNode
 }
 
 export function PageHeader({ title, subtitle, children }: PageHeader) {
@@ -14,9 +14,7 @@ export function PageHeader({ title, subtitle, children }: PageHeader) {
 				<span className={styles.pageHeader__subtitle}>{subtitle}</span>
 			</div>
 
-			<div className={styles.pageHeader__button}>
-				{children}
-			</div>
+			<div className={styles.pageHeader__button}>{children}</div>
 		</div>
-	);
+	)
 }
